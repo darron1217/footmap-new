@@ -44,5 +44,27 @@ export default {
 </script>
 
 <style>
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/core/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/core/css/normalize.css";
+@import "~@ionic/core/css/structure.css";
+@import "~@ionic/core/css/typography.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/core/css/padding.css";
+@import "~@ionic/core/css/float-elements.css";
+@import "~@ionic/core/css/text-alignment.css";
+@import "~@ionic/core/css/text-transformation.css";
+@import "~@ionic/core/css/flex-utils.css";
+
+
+
+.label * {display: inline-block;vertical-align: top;}
+.label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
+.label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+.label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
+
 
 </style>
