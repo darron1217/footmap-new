@@ -22,6 +22,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "ionicons": "^4.5.9-1",
+    "json-server": "^0.15.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

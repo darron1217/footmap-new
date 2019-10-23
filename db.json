@@ -1,0 +1,13 @@
+{
+    "trucks": [
+      {
+        "id": 1, "name": "치킨집", "lat": 37.39976990, "lng": 126.97010010, "image": "", "description": "설명입니다.",
+        "foods": [
+          {"id": 1, "name": "양념치킨", "price": 14000, "image": "", "description": ""}
+        ]
+      }
+    ],
+    "orders": [
+
+    ]
+}

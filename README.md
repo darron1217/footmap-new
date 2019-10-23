@@ -1,24 +1,21 @@
-# my-vue-app
+# 푸트맵 프로젝트
 
-## Project setup
+## 프로젝트 설치
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 프로젝트 실행
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Json Server 설치 (글로벌 설치)
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm install -g json-server
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Json Server 구동
+```
+json-server --watch db.json
+```
