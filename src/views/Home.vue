@@ -46,9 +46,12 @@
 </div>
 </template>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0efaf6ad743635fa29b5dcd6927f99e6"></script>
 <script>
 import TruckModal from '../components/TruckModal.vue'
 import VueDaumMap from 'vue-daum-map';
+
+
 
 export default {
   name: 'App',
@@ -226,9 +229,9 @@ export default {
         //   }
         // };
       },
-      // onMapEvent (event, params) {
-      //   console.log(`Daum Map Event(${event})`, params);
-      // },
+      onMapEvent (event, params) {
+        console.log(`Daum Map Event(${event})`, params);
+      },
     // 로그인
     showLoginPrompt() {
       return this.$ionic.alertController

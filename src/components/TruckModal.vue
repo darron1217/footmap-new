@@ -11,7 +11,7 @@
               <!--<img :src="truck.thumbnail">-->
               <img src="../../static/img/hiclipart.com-id_hongw.png">
             </ion-thumbnail>  
-            {{ truck.name }}
+            {{ truck.title }}
           </ion-item>
           
         </ion-title>
@@ -91,7 +91,6 @@
 export default {
   name: 'Modal',
   props: {
-    
   },
   data() {
     return {
