@@ -66,7 +66,7 @@ export default {
         id: 0,
         lat: 37.4505673,
         lng: 126.7887031999999,
-        image: "",
+        image: "/img/hiclipart.com-id_hongw.png",
         description: "",
         distance: 1000.3,
         foods:[{
