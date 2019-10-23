@@ -19,7 +19,7 @@
 
           <ion-item>
             <ion-label position="floating">설명</ion-label>
-            <ion-textarea name="description" v-bind:value="truck.description"></ion-textarea>
+            <ion-textarea name="description" v-bind:value="truck.description" @ionInput="truck.description = $event.target.value;"></ion-textarea>
           </ion-item>
         </ion-list>
 
@@ -81,6 +81,7 @@ export default {
         loading.present();
         axios.put(`http://localhost:3000/trucks/${this.id}`, this.truck).then(res => {
           console.log(res);
+          this.truck = res.data;
           loading.dismiss();
           // 성공하면 알림
           this.$ionic.alertController.create({
