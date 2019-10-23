@@ -26,15 +26,29 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      trucks: [{ id:1, name: '푸드트럭1', phone: '010-1234-1234', description: '세상에서 제일 잘나가는 푸드트럭이다', foods:[{id:1,name:'양념치킨',price:10000}]}],
+      trucks: [],
     }
+  },
+  mounted: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+      this.getTrucks();
+    })
   },
   methods: {
     go(url) {
       this.$router.push(url);
+    },
+    getTrucks() {
+      axios.get('http://localhost:3000/trucks').then(res => {
+        this.trucks = res.data;
+      });
     }
   },
 }

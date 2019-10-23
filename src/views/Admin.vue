@@ -14,20 +14,20 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-card>
+      <ion-card button @click="go('/admintruck')">
         <ion-card-header>
           <ion-card-title>푸드트럭</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          1대
+          {{ truckCount }}대
         </ion-card-content>
       </ion-card>
-      <ion-card>
+      <ion-card button @click="go('/adminorder')">
         <ion-card-header>
-          <ion-card-title>준비중인 상품</ion-card-title>
+          <ion-card-title>준비중인 주문</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          5건
+          {{ orderCount }}건
         </ion-card-content>
       </ion-card>
     </ion-content>
@@ -35,11 +35,34 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  data() {
+    return {
+      truckCount: 0,
+      orderCount: 0
+    }
+  },
+  mounted: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+      this.getInfos();
+    })
+  },
   methods: {
     go(url) {
       this.$router.push(url);
     },
+    getInfos() {
+      axios.get('http://localhost:3000/trucks').then(res => {
+        this.truckCount = res.data.length;
+      });
+      axios.get('http://localhost:3000/orders').then(res => {
+        this.orderCount = res.data.length;
+      });
+    }
   },
 }
 </script>

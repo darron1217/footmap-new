@@ -11,7 +11,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-button @click="openModal">Open Modal</ion-button>
+      <ion-button @click="openModal(1)">Open Modal</ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -28,8 +28,8 @@ export default {
         .create({
           component: TruckModal,
           componentProps: {
-            title: "Teeste",
             id: truckid,
+            name: "치킨트럭",
             image: "",
             foods:[]
           }
