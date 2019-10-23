@@ -16,13 +16,14 @@
           
         </ion-title>
         <ion-buttons slot="primary">
-          <ion-button @click="Confirm">Submit</ion-button>
+          <ion-button @click="payConfirm">Submit</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list v-for="food in foods"
+      <ion-list v-for="food in truck.foods"
                 v-bind:key="food.id" lines="full">
+        
         <ion-item class="foodInfo">
           <ion-row>
             <ion-col size=6>
@@ -31,20 +32,42 @@
             <ion-col size=6>
               <ion-row class="foodNamePrice">
                 <ion-col size=7>
-                  {{ food.name }}
+                  <span class="foodNameTxt">{{ food.name }}</span>
                 </ion-col>
                 <ion-col size=5>
-                  {{ food.price }}원
+                  <div class="foodPriceTxt">{{ food.price }}원</div>
                 </ion-col>
               </ion-row>
               <ion-row class="foodConfirm">
-                <ion-col size=8>
-                  {{ food.count }}개
+                <ion-col size=12>
+                  <ion-col size=3>
+                    <ion-button color="dark" fill="clear" size="small" @click=btnUpClick value="aa">
+                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                      <ion-icon  name="arrow-dropup"></ion-icon>
+                    </ion-button>
+                    </ion-col>
+                  <ion-col size=6>
+                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" v:model="food.count" disabled=true  ></ion-input>
+                  </ion-col>
+                  <ion-col size=3>
+                    <ion-button color="dark" fill="clear" size="small" @click=btnDownClick>
+                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                      <ion-icon name="arrow-dropdown"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                  
+                  <!--{{ food.count }}개-->
+                  
+                                 
+                  
+                  
                 </ion-col>
-                <ion-col size=4>
+                <!--<ion-col size=4>
                   <ion-picker-controller></ion-picker-controller>
-                  <ion-button color="dark" fill="outline" @click=openSimplePicker v-bind:value="food.id">Select</ion-button>
-                </ion-col>
+                  <ion-button color="dark" fill="outline" @click=openSimplePicker v-bind:value="food.id">
+                    Select<ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                  </ion-button>
+                </ion-col>-->
               </ion-row>
               
             </ion-col>
@@ -63,66 +86,23 @@
   </ion-page>
   
 </template>
-<script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator';
 
-  export @Component() class Example extends Vue {
-    // Optional parameters to pass to the swiper instance. See http://idangero.us/swiper/api/ for valid options.
-    slideOpts = {
-      initialSlide: 1,
-      speed: 400
-    };
-  }
-</script>
 <script>
 export default {
   name: 'Modal',
   props: {
-    title: { type: String, default: 'Super Modal' },
+    truck: { type: Object, default() {}}
   },
   data() {
     return {
-      truck: {
-        name: 'Chicken Truck',
-        thumbnail: "/img/hiclipart.com-id_hongw.png"
-      }, foods: [{
-        id:1,
-        image: "https://img.kbs.co.kr/kbs/620/nsimg.kbs.co.kr/data/news/2017/01/04/3405677_bH6.jpg",
-        name: 'Chicken',
-        count: 0,
-        price: 20000
-      },{
-        id:2,
-        image: "https://cdn.pixabay.com/photo/2016/03/15/08/02/food-1257054_960_720.jpg",
-        name: 'Gimbab',
-        count: 0,
-        price: 2500
-      },{
-        id:3,
-        image: "https://img-wishbeen.akamaized.net/plan/1449453370478_2015-12-0318;50;19.PNG",
-        name: 'Tteok',
-        count: 0,
-        price: 4000
-      }]
-      
+      orderHistory: "",
+      totalPrice: 0,
     }
   },
   methods: {
     closeModal() {
       return this.$ionic.modalController
         .dismiss()
-    },
-    buttonClick(){
-      console.log();
-    }, getColumnOptions(columnOptions){
-      let options = [];
-      for(let i = 0; i < columnOptions.length; i++) {
-        options.push({
-          text: columnOptions[i],
-          value: i
-        });
-        return options;
-      }
     },getColumns(numColumns, columnOptions) {
       let columns = [];
       for (let i = 0; i < numColumns; i++) {
@@ -156,15 +136,15 @@ export default {
         }
       }
       return options;
-    } ,async openSimplePicker(event) {
-      console.log(event.target.value);
+    } ,async openSimplePicker(e) {
+      const currentFoodIndex = parseInt(e.target.childNodes[1].value)-1;
       // get the picker controller this way for now
       const pickerController = document.querySelector("ion-picker-controller");
       await pickerController.componentOnReady();
       // set the arry for the column information, you can set the name of the column
       // and the array of data that should be rendered in the column
       let colOptions = [
-        { name: "number", data: ["1", "2", "3", "4", "5"] }
+        { name: "number", data: ["5", "4", "3", "2", "1", "0"] }
       ];
       // now create the picker, but first you need to create the columns
       // in the proper format for ionic vue to deal with them
@@ -180,6 +160,7 @@ export default {
             role: "confirm",
             handler: value => {
               console.log("Got Value", value.number);
+              this.foods[currentFoodIndex].count = parseInt(value.number.text);
               
               
               picker.dismiss(value, "confirm");
@@ -192,7 +173,54 @@ export default {
       });
       // present the picker
       await picker.present();
+    }, payConfirm(){
+      return this.$ionic.alertController
+        .create({
+          header: '주문 하시겠습니까?',
+          subHeader: '주문 내역',
+          message: this.orderHistory + '<br>총 합계 : ' + this.totalPrice + '원',
+          buttons: [{
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                console.log('Confirm Cancel')
+              },
+            }, {
+            text: 'OK',
+            handler: () => {  
+              console.log('press confirm');
+            }
+            }],
+        })
+        .then(a => a.present())
     },
+    setOrder() {
+      this.orderHistory="";
+      this.totalPrice=0;
+      for(let i = 0; i < this.foods.length; i++) {
+        if(this.foods[i].count != "0") {
+          this.orderHistory += this.foods[i].name + "   " + this.foods[i].count + '개<br>';
+          this.totalPrice += (this.foods[i].price * this.foods[i].count);
+        }
+      }
+    },
+    
+    btnUpClick(e) {
+      this.foods[e.target.childNodes[0].value-1].count++;
+      this.setOrder();
+    },
+    btnDownClick(e) {
+      if(this.foods[e.target.childNodes[0].value-1].count > 0) {
+        console.log(this.foods[e.target.childNodes[0].value-1].count);
+        this.foods[e.target.childNodes[0].value-1].count--;
+        this.setOrder();
+      }
+      
+    },
+    countChange(){
+      
+    }
   }
 }
 </script>
@@ -214,15 +242,36 @@ export default {
   }
 
   ion-button {
-    --margin-top: 0px;
     position: relative;
-    top: -2px;
-    right: 8px;
+    top: -5px;
+  }
+  .foodNameTxt {
+    font-size: 19px;
+    font-weight: bold;
+  }
+  .foodPriceTxt {
+    width: 100% ;
+    font-size: 14px;
+    text-align: right;
+  }
+  .foodConfirm {
+    text-align: center;
   }
   .foodInfo > ion-row  .foodNamePrice {
-    height: 65%;
+    height: 55%;
   }
   .foodInfo > ion-row  .foodConfirm {
-    height: 30%;
+    height: 40%;
+  }
+  ion-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  ion-input {
+    --padding-top : 0px;
+    --padding-right : 0px;
+    --padding-bottom : 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
   }
 </style>
