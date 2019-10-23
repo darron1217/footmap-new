@@ -16,9 +16,9 @@
     <ion-content>
       <ion-list>
         <ion-item button v-for="truck in trucks" v-bind:key="truck.id" @click="go('/admintruck/'+truck.id)">
-          <ion-avatar slot="start">
-            <img src="https://ionicframework.com/docs/demos/api/list/avatar-finn.png">
-          </ion-avatar>
+          <ion-thumbnail slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-thumbnail>
           <ion-label>
             <h2>{{ truck.name }}</h2>
             <h3>{{ truck.phone }}</h3>

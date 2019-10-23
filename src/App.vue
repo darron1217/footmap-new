@@ -17,6 +17,10 @@
               <ion-icon name="pin" slot="start"></ion-icon>
               <ion-label>푸드트럭관리</ion-label>
             </ion-item>
+            <ion-item button @click="go('/adminorder')">
+              <ion-icon name="list-box" slot="start"></ion-icon>
+              <ion-label>주문관리</ion-label>
+            </ion-item>
           </ion-list>
         </ion-content>
       </ion-menu>

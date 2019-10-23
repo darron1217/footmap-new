@@ -26,6 +26,11 @@ const routes = [
     props: true,
     component: () => import('../views/AdminTruckDetail.vue'),
   },
+  {
+    path: '/adminorder',
+    name: 'adminOrder',
+    component: () => import('../views/AdminOrder.vue'),
+  },
 ]
 
 const router = new IonicVueRouter({
