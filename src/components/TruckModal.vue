@@ -21,9 +21,8 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list v-for="food in truck.foods"
+      <ion-list v-for="(food, index) in truck.foods"
                 v-bind:key="food.id" lines="full">
-        
         <ion-item class="foodInfo">
           <ion-row>
             <ion-col size=6>
@@ -42,16 +41,16 @@
                 <ion-col size=12>
                   <ion-col size=3>
                     <ion-button color="dark" fill="clear" size="small" @click=btnUpClick value="aa">
-                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                      <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon  name="arrow-dropup"></ion-icon>
                     </ion-button>
                     </ion-col>
                   <ion-col size=6>
-                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" v:model="food.count" disabled=true  ></ion-input>
+                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
                   </ion-col>
                   <ion-col size=3>
                     <ion-button color="dark" fill="clear" size="small" @click=btnDownClick>
-                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                      <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon name="arrow-dropdown"></ion-icon>
                     </ion-button>
                   </ion-col>
@@ -96,7 +95,11 @@ export default {
     return {
       orderHistory: "",
       totalPrice: 0,
+      
     }
+  },
+  created() {
+    this.truck.foods.map(food => food.count = 0);
   },
   methods: {
     closeModal() {
@@ -206,13 +209,15 @@ export default {
     },
     
     btnUpClick(e) {
-      this.truck.foods[e.target.childNodes[0].value-1].count++;
+      this.truck.foods[e.target.childNodes[0].value].count++;
+      console.log(this.truck.foods[e.target.childNodes[0].value].count);
       this.setOrder();
     },
     btnDownClick(e) {
-      if(this.truck.foods[e.target.childNodes[0].value-1].count > 0) {
-        console.log(this.truck.foods[e.target.childNodes[0].value-1].count);
-        this.truck.foods[e.target.childNodes[0].value-1].count--;
+      if(this.truck.foods[e.target.childNodes[0].value].count > 0) {
+        
+        this.truck.foods[e.target.childNodes[0].value].count--;
+        console.log(this.truck.foods[e.target.childNodes[0].value].count);
         this.setOrder();
       }
       
