@@ -1,36 +1,52 @@
 {
     "trucks": [{
-        "id": 1,
-        "name": "치킨집1234",
-        "phone": "010-1234-1234",
-        "lat": 37.3997699,
-        "lng": 126.9701001,
+        "id": 0,
+        "title": "새우 나라",
+        "phone": "010-1234-5678",
+        "lat": 37.4505673,
+        "lng": 126.7887031999999,
         "image": "",
-        "description": "최고의 치킨트럭임다",
-        "foods": [{
-            "id": 1,
-            "truckId": 1,
-            "name": "후라이드치킨",
-            "price": 14000,
-            "image": "",
-            "description": "바삭한 후라이드 치킨~"
-        }]
+        "description": "새우가 맛있는 새우 나라!"
+    }, {
+        "id": 1,
+        "title": "치킨 천국",
+        "phone": "010-1234-5655",
+        "lat": 37.4465673,
+        "lng": 126.7857031999999,
+        "image": "",
+        "description": "치킨이 맛있는 치킨 천국!"
     }],
     "foods": [{
-            "id": 1,
-            "truckId": 1,
-            "name": "후라이드치킨",
-            "price": 14000,
+            "id": 0,
+            "truckId": 0,
+            "name": "칵테일 새우 꼬치",
+            "price": 9000,
             "image": "",
-            "description": "바삭한 후라이드 치킨~"
+            "description": "칵테일 새우가 한가득!"
         },
         {
             "id": 1,
-            "truckId": 2,
-            "name": "양념치킨",
-            "price": 15000,
+            "truckId": 0,
+            "name": "새우 머리 튀김",
+            "price": 11000,
             "image": "",
-            "description": "매콤달콤한 양념치킨!"
+            "description": "고소한 새우 머리를 통째로!"
+        },
+        {
+            "id": 2,
+            "truckId": 1,
+            "name": "후라이드 치킨",
+            "price": 12000,
+            "image": "",
+            "description": "바삭한 후라이드 치킨이 한가득!"
+        },
+        {
+            "id": 3,
+            "truckId": 1,
+            "name": "양념 치킨",
+            "price": 13000,
+            "image": "",
+            "description": "달콤매콤한 마법 같은 양념 치킨!"
         }
     ],
     "orders": [{

@@ -22,20 +22,6 @@
 
       @load="onLoad"
 
-      @center_changed="onMapEvent('center_changed', $event)"
-      @zoom_start="onMapEvent('zoom_start', $event)"
-      @zoom_changed="onMapEvent('zoom_changed', $event)"
-      @bounds_changed="onMapEvent('bounds_changed', $event)"
-      @click="onMapEvent('click', $event)"
-      @dblclick="onMapEvent('dblclick', $event)"
-      @rightclick="onMapEvent('rightclick', $event)"
-      @mousemove="onMapEvent('mousemove', $event)"
-      @dragstart="onMapEvent('dragstart', $event)"
-      @drag="onMapEvent('drag', $event)"
-      @dragend="onMapEvent('dragend', $event)"
-      @idle="onMapEvent('idle', $event)"
-      @tilesloaded="onMapEvent('tilesloaded', $event)"
-      @maptypeid_changed="onMapEvent('maptypeid_changed', $event)"
 
       style="width:100%;height:100%;">
     </vue-daum-map>
@@ -48,7 +34,7 @@
 <script>
 import TruckModal from '../components/TruckModal.vue'
 import VueDaumMap from 'vue-daum-map';
-
+import axios from 'axios'
 
 
 export default {
@@ -61,6 +47,7 @@ export default {
       mapTypeId: VueDaumMap.MapTypeId.NORMAL,
       libraries: [],
       mapObject: null,
+<<<<<<< Updated upstream
       trucks:[{
         title: "새우 나라",
         id: 0,
@@ -104,10 +91,20 @@ export default {
           image: ""
         }]
       }]
+=======
+      trucks:[]
+>>>>>>> Stashed changes
     }),
-  methods: {
-    openModal(truckid) {
-        console.log("@@@@@@@@@@@@@@@");
+    methods: {
+      getTrucks(){
+          this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
+          axios.get(`http://localhost:3000/trucks?_embed=foods`).then(res => {
+            this.truck = res.data;
+            console.log(this.truck);
+          });
+        });
+      },
+      openModal(truckid) {
         return this.$ionic.modalController
           .create({
             component: TruckModal,
@@ -116,25 +113,14 @@ export default {
                 truck : this.trucks[truckid]
               },
               propsData: {
-                
-                // truckid: truckid,
-                // title: this.trucks[truckid].title,
-                // img: this.trucks[truckid].image,
-                // foodinfos: this.trucks[truckid].foods,
               },
             },
-            // componentProps: {
-            // title: "Teeste",
-            // id: truckid,
-            // image: ""
-            // }
         })
         .then(m => m.present())
       },
-      onLoad (map) {
+      async onLoad (map) {
         if (navigator.geolocation) { // GPS를 지원하면
           navigator.geolocation.getCurrentPosition(function(position) {
-          // console.log(position.coords.latitude + ' ' + position.coords.longitude);
           var moveLoca = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
           map.setCenter(moveLoca);
 
@@ -146,12 +132,10 @@ export default {
           alert("GPS를 지원하지 않습니다");
         }
 
-        // axios.get('https://footmap-api-xfydr.run.goorm.io/?lat='+this.center.lat+'+&lng='+this.center.lng)
-        // .then(res => {
-        //   console.log(res);
-        // })
+        await axios.get('http://localhost:3000/trucks?_embed=foods').then(res=>{
+          this.trucks = res.data;
+        });
 
-        console.log(this.trucks[1].title);
         
 
         // 지도의 현재 영역을 얻어옵니다
@@ -206,26 +190,8 @@ export default {
         
         });
 
-        // function showDetail(truckid){
-        //   return function(){
-        //     this.openModal(truckid);
-        //   }
-        // }
+        
 
-        // function openModal(truckid) {
-        //   return function(){
-        //     console.log(truckid);
-        //     // return this.$ionic.modalController
-        //     //   .create({
-        //     //     component: Modal,
-        //     //     componentProps: {
-        //     //       title: "Teeste",
-        //     //       id: truckid
-        //     //     }
-        //     //   })
-        //     //   .then(m => m.present())
-        //   }
-        // };
       },
       onMapEvent (event, params) {
         console.log(`Daum Map Event(${event})`, params);
