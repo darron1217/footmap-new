@@ -47,51 +47,6 @@ export default {
       mapTypeId: VueDaumMap.MapTypeId.NORMAL,
       libraries: [],
       mapObject: null,
-<<<<<<< Updated upstream
-      trucks:[{
-        title: "새우 나라",
-        id: 0,
-        lat: 37.4505673,
-        lng: 126.7887031999999,
-        image: "/img/hiclipart.com-id_hongw.png",
-        description: "",
-        distance: 1000.3,
-        foods:[{
-          id: 0,
-          truck_id: 0,
-          name: "양념치킨",
-          price: 9000,
-          image: ""
-        },{
-          id: 1,
-          truck_id: 0,
-          name: "등심꼬치",
-          price: 5000,
-          image: ""
-        }]
-      },{
-        title: "갈비 천국",
-        id: 0,
-        lat: 37.4465673,
-        lng: 126.7857031999999,
-        image: "",
-        description: "",
-        distance: 1000.3,
-        foods:[{
-          id: 0,
-          truck_id: 0,
-          name: "간장치킨",
-          price: 9000,
-          image: ""
-        },{
-          id: 1,
-          truck_id: 0,
-          name: "등심꼬치",
-          price: 5000,
-          image: ""
-        }]
-      }]
-=======
       trucks:[]
     }),
     methods: {
