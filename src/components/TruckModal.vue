@@ -91,7 +91,7 @@
 export default {
   name: 'Modal',
   props: {
-    truck: { type: Object, default() {}}
+    
   },
   data() {
     return {
@@ -198,22 +198,22 @@ export default {
     setOrder() {
       this.orderHistory="";
       this.totalPrice=0;
-      for(let i = 0; i < this.foods.length; i++) {
-        if(this.foods[i].count != "0") {
-          this.orderHistory += this.foods[i].name + "   " + this.foods[i].count + '개<br>';
-          this.totalPrice += (this.foods[i].price * this.foods[i].count);
+      for(let i = 0; i < this.truck.foods.length; i++) {
+        if(this.truck.foods[i].count != "0") {
+          this.orderHistory += this.truck.foods[i].name + "   " + this.truck.foods[i].count + '개<br>';
+          this.totalPrice += (this.truck.foods[i].price * this.truck.foods[i].count);
         }
       }
     },
     
     btnUpClick(e) {
-      this.foods[e.target.childNodes[0].value-1].count++;
+      this.truck.foods[e.target.childNodes[0].value-1].count++;
       this.setOrder();
     },
     btnDownClick(e) {
-      if(this.foods[e.target.childNodes[0].value-1].count > 0) {
-        console.log(this.foods[e.target.childNodes[0].value-1].count);
-        this.foods[e.target.childNodes[0].value-1].count--;
+      if(this.truck.foods[e.target.childNodes[0].value-1].count > 0) {
+        console.log(this.truck.foods[e.target.childNodes[0].value-1].count);
+        this.truck.foods[e.target.childNodes[0].value-1].count--;
         this.setOrder();
       }
       

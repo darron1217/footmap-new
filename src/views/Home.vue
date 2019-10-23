@@ -22,16 +22,31 @@ import TruckModal from '../components/TruckModal.vue'
 export default {
   name: 'App',
   methods: {
-    openModal(truckid) {
+    openModal() {
       console.log("@@@@@@@@@@@@@@@");
       return this.$ionic.modalController
         .create({
           component: TruckModal,
           componentProps: {
-            id: truckid,
-            name: "치킨트럭",
-            image: "",
-            foods:[]
+            data: {
+              truck: {
+      id: 1,
+      "foods": [
+        {
+          "id": 1,
+          "truckId": 1,
+          "name": "후라이드치킨",
+          "price": 14000,
+          "image": "",
+          "description": "바삭한 후라이드 치킨~",
+          count: 0
+        }
+      ]
+    }
+            },
+            propsData: {
+              
+            },
           }
         })
         .then(m => m.present())
