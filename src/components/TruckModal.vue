@@ -1,14 +1,6 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>  
-        </ion-title>
-        <ion-buttons slot="primary" style="padding-left: 10px;">
-          <ion-button @click="closeModal">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    
     <ion-content class="ion-padding">
 
       <!-- Food Truck Infomation View -->
@@ -17,7 +9,7 @@
           <ion-card-title color="medium" style=" text-align : center; padding-bottom: 15px;"> 
             {{ truck.name }}
           </ion-card-title>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegnsUD0Zjmms7vGD4InbXlAoc8uuYQH62hWINvEUgUpBhzA8OsA&s">
+          <img class="storeImg" src="http://callidaum.co.kr/data/file/portfolio/2040046850_qUK0oF52_1e1e0e9813f0b46e6663bc6cb2a03347ad56bef4.jpg">
           
           
           <ion-card-subtitle>
@@ -30,7 +22,12 @@
               {{ truck.grade.toFixed(1) }}
             </span>
           </ion-card-subtitle>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-subtitle>
+            영업시간 : xx ~ xx
+          </ion-card-subtitle>
+          <ion-card-subtitle>
+            최소 대기시간: xx분
+          </ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
@@ -40,13 +37,15 @@
           <ion-grid>
             <ion-row >
               <ion-col size=4>
-                <ion-button>
+                <ion-button @click=presentActionSheet>
                   <ion-icon name="call"></ion-icon>전화
+                  
                 </ion-button>
+                
               </ion-col>
               <ion-col size=4>
-                <ion-button>
-                  <ion-icon name="heart-empty"></ion-icon>찜
+                <ion-button class="likeBtn" @click=likeBtnClick>
+                  <ion-icon  class="likeIcon" name="heart-empty"></ion-icon>찜
                 </ion-button>
               </ion-col>
               <ion-col size=4>
@@ -57,59 +56,129 @@
             </ion-row>
             <ion-row>
               <ion-col size=12>
-                <ion-button @click="payConfirm">
-                  <ion-icon name="card"></ion-icon>  결제하기
+                <ion-button  @click="payConfirm">
+                  <ion-icon  name="card"></ion-icon>  결제하기
                 </ion-button>
                 
               </ion-col>
             </ion-row>
           </ion-grid>
-          
         </ion-item-group>
       </ion-card>
       <!-- Food Truck Infomation View -->
 
       <!-- Food List View  -->
-      <ion-list v-for="(food, index) in truck.foods"
+      <ion-grid>
+        <ion-row class="menuGridBtn" style="text-align: center;">
+          <ion-col size=6>
+            <ion-button @click=menuBtnClick class="menuBtn listMenuSelected">메뉴</ion-button>
+          </ion-col>
+          <ion-col size=6>
+            <ion-button @click=reviewBtnClick class="reviewBtn">리뷰</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="menuReviewGrid">
+        <ion-row class="menuGrid">
+          <ion-list v-for="(food, index) in truck.foods"
                 v-bind:key="index" lines="full">
-        <ion-item class="foodInfo">
-          <ion-row>
-            <ion-col size=6>
-              <img :src="food.image" class="foodImg">
-            </ion-col>
-            <ion-col size=6>
-              <ion-row class="foodNamePrice">
-                <ion-col size=7>
-                  <span class="foodNameTxt">{{ food.name }}</span>
+            <ion-item class="foodInfo">
+              <ion-row>
+                <ion-col size=4>
+                  <img :src="food.image" class="foodImg">
                 </ion-col>
-                <ion-col size=5>
-                  <div class="foodPriceTxt">{{ food.price }}원</div>
-                </ion-col>
-              </ion-row>
-              <ion-row class="foodConfirm">
-                <ion-col size=12>
-                  <ion-col size=3>
-                    <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
-                      <ion-input type="hidden" v-bind:value="index"></ion-input>
-                      <ion-icon  name="arrow-dropup"></ion-icon>
-                    </ion-button>
+                <ion-col size=8>
+                  <ion-row class="foodNamePrice">
+                    <ion-col size=7>
+                      <span class="foodNameTxt">{{ food.name }}</span>
                     </ion-col>
-                  <ion-col size=6>
-                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
-                  </ion-col>
-                  <ion-col size=3>
-                    <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnDownClick(food)">
-                      <ion-input type="hidden" v-bind:value="index"></ion-input>
-                      <ion-icon name="arrow-dropdown"></ion-icon>
-                    </ion-button>
-                  </ion-col> 
+                    <ion-col size=5>
+                      <div class="foodPriceTxt">{{ food.price }}원</div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="foodConfirm">
+                    <ion-col size=12>
+                      <ion-col size=3>
+                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
+                          <ion-input type="hidden" v-bind:value="index"></ion-input>
+                          <ion-icon  name="arrow-dropup"></ion-icon>
+                        </ion-button>
+                        </ion-col>
+                      <ion-col size=6>
+                        <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
+                      </ion-col>
+                      <ion-col size=3>
+                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnDownClick(food)">
+                          <ion-input type="hidden" v-bind:value="index"></ion-input>
+                          <ion-icon name="arrow-dropdown"></ion-icon>
+                        </ion-button>
+                      </ion-col> 
+                    </ion-col>
+                  </ion-row>
                 </ion-col>
               </ion-row>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+        <ion-row class="reviewGrid hiddenRow">
+          <ion-row style="padding-bottom: 15px; border-bottom: 1px solid #afafaf">
+            <ion-col size=12 style="text-align: center;">
+              <span class="gradeTxt"> 
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-text>   {{ userInputGrade.toFixed(1) }}</ion-text>
+            </span>
             </ion-col>
-            
+            <ion-col size=8>
+              <ion-textarea autofocus=true name="reviewContents" required=true style="font-size: 12px; padding-left: 10px;"></ion-textarea>
+            </ion-col>
+            <ion-col size=4>
+              <ion-button type="submit" color="light" class="reviewConfirmBtn">
+                <ion-icon name="create"></ion-icon>확 인
+              </ion-button>
+            </ion-col>
           </ion-row>
-        </ion-item>
-      </ion-list>
+          <ion-col>
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+              <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
+              <ion-col class="reviewContentsDiv" size=9>
+                <ion-row class="userNick" style="color: #000000; font-size:20px;">
+                  이 종아
+                </ion-row>
+                <ion-row class="reviewContents" style="padding-top: 7px; color: #999999; font-size: 15px;">
+                  맛있네요^^
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+              <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
+              <ion-col class="reviewContentsDiv" size=9>
+                <ion-row class="userNick" style="color: #000000; font-size:20px;">
+                  박 관영
+                </ion-row>
+                <ion-row class="reviewContents" style="padding-top: 7px; color: #999999; font-size: 15px;">
+                  맛있습니다.
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+              <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
+              <ion-col class="reviewContentsDiv" size=9>
+                <ion-row class="userNick" style="color: #000000; font-size:20px;">
+                  강 찬
+                </ion-row>
+                <ion-row class="reviewContents" style="padding-top: 7px; color: #999999; font-size: 15px;">
+                  정말 맛있네요.
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
       <!-- Food List View  -->
       <!--
       <ion-fab horizontal="end" vertical="bottom" slot="fixed">
@@ -125,6 +194,7 @@
 
 <script>
 import Vue from 'vue';
+import axios from 'axios'
 
 export default {
   name: 'Modal',
@@ -133,8 +203,10 @@ export default {
   },
   data() {
     return {
+      orderFoodList: {},
       orderHistory: "",
       totalPrice: 0,
+      userInputGrade: 0.0,
     }
   },
   created() {
@@ -145,17 +217,42 @@ export default {
   mounted() {
     let i = 0;
     for(; i < parseInt(this.truck.grade); i++) {
-      this.$el.querySelectorAll('.icStar')[i].name = "star";
+      this.$el.querySelectorAll('.gradeTxt .icStar')[i].name = "star";
     }
     if(this.truck.grade - i > 0) {
-      this.$el.querySelectorAll('.icStar')[i++].name = "star-half";
+      this.$el.querySelectorAll('.gradeTxt .icStar')[i++].name = "star-half";
     } 
     for(; i < 5; i++) {
-      this.$el.querySelectorAll('.icStar')[i].name = "star-outline";
+      this.$el.querySelectorAll('.gradeTxt .icStar')[i].name = "star-outline";
     }
     
   },
   methods: {
+    test() {
+      console.log('test');
+    },
+    likeBtnClick() {
+      const cuBtn = this.$el.querySelector('.likeBtn');
+      if(cuBtn.classList.contains('selectedLike')) {
+        cuBtn.classList.remove('selectedLike');
+        cuBtn.childNodes[0].name="heart-empty";
+      } else {
+        cuBtn.classList.add('selectedLike');
+        cuBtn.childNodes[0].name="heart";
+      }
+    },
+    reviewBtnClick() {
+      this.$el.querySelector('.menuBtn').classList.remove("listMenuSelected");
+      this.$el.querySelector('.reviewBtn').classList.add("listMenuSelected");
+      this.$el.querySelector('.menuReviewGrid').childNodes[0].classList.add("hiddenRow");
+      this.$el.querySelector('.menuReviewGrid').childNodes[1].classList.remove("hiddenRow");
+    },
+    menuBtnClick() {
+      this.$el.querySelector('.menuBtn').classList.add("listMenuSelected");
+      this.$el.querySelector('.reviewBtn').classList.remove("listMenuSelected");
+      this.$el.querySelector('.menuReviewGrid').childNodes[0].classList.remove("hiddenRow");
+      this.$el.querySelector('.menuReviewGrid').childNodes[1].classList.add("hiddenRow");
+    },
     closeModal() {
       return this.$ionic.modalController
         .dismiss()
@@ -170,12 +267,27 @@ export default {
               role: 'cancel',
               cssClass: 'secondary',
               handler: () => {
-                console.log('Confirm Cancel')
+                console.log('press cancel');
               },
             }, {
             text: 'OK',
             handler: () => {  
-              console.log('press confirm');
+              this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
+                  axios.put(`http://localhost:3000/orders/`, ).then(res => {
+                    console.log(res);
+                    this.truck = res.data;
+                    loading.dismiss();
+                    // 성공하면 알림
+                    this.$ionic.alertController.create({
+                      header: '등록되었습니다',
+                      message: `<b>${this.truck.name} 주문이 완료되었습니다.</b>`,
+                      buttons: [{
+                        text: 'OK'
+                      }]
+                    }).then(alert => alert.present());
+                  });
+                  console.log('loding wanryo');
+                });
             }
             }],
         })
@@ -184,8 +296,10 @@ export default {
     setOrder() {
       this.orderHistory="";
       this.totalPrice=0;
+      let tempObj = {};
       for(let i = 0; i < this.truck.foods.length; i++) {
         if(this.truck.foods[i].count != "0") {
+          tempObj.push('');
           this.orderHistory += this.truck.foods[i].name + "   " + this.truck.foods[i].count + '개<br>';
           this.totalPrice += (this.truck.foods[i].price * this.truck.foods[i].count);
         }
@@ -201,8 +315,27 @@ export default {
         console.log(food.count--);
         this.setOrder();
       }
-      
-    }
+    },presentActionSheet() {
+      return this.$ionic.actionSheetController
+        .create({
+          buttons: [
+            {
+              text: '통화 ' + this.truck.phone,
+              handler: () => {
+                console.log('Call clicked')
+              },
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked')
+              },
+            },
+          ],
+        })
+        .then(a => a.present())
+    },
   }
 }
 </script>
@@ -228,6 +361,13 @@ export default {
     top: -5px;
     
   }
+  .selectedLike {
+    --background:#dddddd;
+    --color: #ffffff;
+  }
+  .hiddenRow {
+    display: none;
+  }
   .infoBtnGroup ion-button {
     --background: #ffffff;
     --border-color: #afafaf;
@@ -238,14 +378,28 @@ export default {
     --color-activated: #ffffff;
     width:100%;
   }
+  .menuGridBtn ion-button {
+    --background: #ffffff;
+    --color: #000000;
+    --background-activated: #ffffff;
+    --color-activated: #000000;
+    width:100%;
+  }
+  .listMenuSelected {
+    --background: #eeeeee!important;
+    --background-activated: #eeeeee!important;
+    --color-activated:   #000000!important;
+  }
   .foodNameTxt {
-    font-size: 19px;
+    font-size: 15px;
     font-weight: bold;
+    height: 100%;
   }
   .foodPriceTxt {
     width: 100% ;
     font-size: 14px;
-    text-align: right;
+    text-align: center;
+    height: 100%;
   }
   .foodConfirm {
     text-align: center;
@@ -255,6 +409,11 @@ export default {
   }
   .foodInfo > ion-row  .foodConfirm {
     height: 40%;
+  }
+  ion-textarea {
+    border-radius: 10px;
+    border: 1px solid #afafaf;
+
   }
   ion-list {
     margin-top: 10px;
@@ -281,11 +440,28 @@ export default {
     font-size: 28px;
     font-weight: lighter;
   }
-  .gradeTxt .icStar {
-    position: relative;
-    top: 5px;
+  .icStar {
     font-size: 30px;
     color: #ffb245;
     font-weight: bold;
+  }
+  .gradeTxt .icStar {
+    position: relative;
+    top: 5px;
+  }
+  .storeImg {
+    border-radius: 20% 20%;
+  }
+  .reviewConfirmBtn {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    --background: #ffffff;
+    --border-color: #afafaf;
+    --border-style: solid;
+    --border-width: 1px;
+    --color: #3f3f3f;
+    --background-activated: #dddddd;
+    --color-activated: #ffffff;
   }
 </style>
