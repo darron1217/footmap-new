@@ -54,17 +54,8 @@
     "orders": [{
         "id": 1,
         "truckId": 1,
-        "userId": "darron1217",
-        "totalPrice": 28000,
-        "status": "preparing"
-    }],
-    "orderedFoods": [{
-            "orderId": 1,
-            "foodId": 1
-        },
-        {
-            "orderId": 1,
-            "foodId": 2
-        }
-    ]
+        "foodId": 0,
+        "count": 2,
+        "isReady": false
+    }]
 }
