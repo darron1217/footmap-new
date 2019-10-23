@@ -44,7 +44,6 @@ json-server --watch db.json
 ## 파일 정보 및 목록 (File Manifest)
 
 - db.json (json-server 데이터 파일)
-- 뭘 설명해야하지?
 
 ## 저작권 및 사용권 정보 (Copyright / End User License)
 
