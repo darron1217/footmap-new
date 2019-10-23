@@ -95,6 +95,8 @@ export default {
   },
   data() {
     return {
+      orderHistory: "",
+      totalPrice: 0,
       truck: {
         name: 'Chicken Truck',
         thumbnail: "/img/hiclipart.com-id_hongw.png"
@@ -195,27 +197,11 @@ export default {
       // present the picker
       await picker.present();
     }, payConfirm(){
-      let payFoodItems = [];
-      let orderHistory = ""
-      let totalPrice = 0;
-      for(let i = 0; i < this.foods.length; i++) {
-        if(this.foods[i].count != "0") {
-          payFoodItems.push({
-            name: this.foods[i].name,
-            price: this.foods[i].price,
-            count: this.foods[i].count
-          });
-          orderHistory += payFoodItems[i].name + "   " + payFoodItems[i].count + '개<br>';
-          totalPrice += (payFoodItems[i].count * payFoodItems[i].price);
-        }
-      }
-      console.log(orderHistory);
-      console.log(totalPrice);
       return this.$ionic.alertController
         .create({
           header: '주문 하시겠습니까?',
           subHeader: '주문 내역',
-          message: orderHistory + '<br>총 합계 : ' + totalPrice + '원',
+          message: this.orderHistory + '<br>총 합계 : ' + this.totalPrice + '원',
           buttons: [{
               text: 'Cancel',
               role: 'cancel',
@@ -232,13 +218,26 @@ export default {
         })
         .then(a => a.present())
     },
+    setOrder() {
+      this.orderHistory="";
+      this.totalPrice=0;
+      for(let i = 0; i < this.foods.length; i++) {
+        if(this.foods[i].count != "0") {
+          this.orderHistory += this.foods[i].name + "   " + this.foods[i].count + '개<br>';
+          this.totalPrice += (this.foods[i].price * this.foods[i].count);
+        }
+      }
+    },
+    
     btnUpClick(e) {
       this.foods[e.target.childNodes[0].value-1].count++;
+      this.setOrder();
     },
     btnDownClick(e) {
       if(this.foods[e.target.childNodes[0].value-1].count > 0) {
         console.log(this.foods[e.target.childNodes[0].value-1].count);
         this.foods[e.target.childNodes[0].value-1].count--;
+        this.setOrder();
       }
       
     },
