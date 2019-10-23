@@ -8,8 +8,7 @@
         <ion-title>
           <ion-item>
             <ion-thumbnail slot="start">
-              <!--<img :src="truck.thumbnail">-->
-              <img src="../../static/img/hiclipart.com-id_hongw.png">
+              <img :src="truck.image">
             </ion-thumbnail>  
             {{ truck.title }}
           </ion-item>
