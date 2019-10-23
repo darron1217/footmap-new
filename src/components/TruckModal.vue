@@ -21,9 +21,8 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list v-for="food in truck.foods"
-                v-bind:key="food.id" lines="full">
-        
+      <ion-list v-for="(food, index) in truck.foods"
+                v-bind:key="index" lines="full">
         <ion-item class="foodInfo">
           <ion-row>
             <ion-col size=6>
@@ -41,33 +40,21 @@
               <ion-row class="foodConfirm">
                 <ion-col size=12>
                   <ion-col size=3>
-                    <ion-button color="dark" fill="clear" size="small" @click=btnUpClick value="aa">
-                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                    <ion-button color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
+                      <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon  name="arrow-dropup"></ion-icon>
                     </ion-button>
                     </ion-col>
                   <ion-col size=6>
-                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" v:model="food.count" disabled=true  ></ion-input>
+                    <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
                   </ion-col>
                   <ion-col size=3>
-                    <ion-button color="dark" fill="clear" size="small" @click=btnDownClick>
-                      <ion-input type="hidden" v-bind:value="food.id"></ion-input>
+                    <ion-button color="dark" fill="clear" size="small" @click="btnDownClick(food)">
+                      <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon name="arrow-dropdown"></ion-icon>
                     </ion-button>
-                  </ion-col>
-                  
-                  <!--{{ food.count }}개-->
-                  
-                                 
-                  
-                  
+                  </ion-col> 
                 </ion-col>
-                <!--<ion-col size=4>
-                  <ion-picker-controller></ion-picker-controller>
-                  <ion-button color="dark" fill="outline" @click=openSimplePicker v-bind:value="food.id">
-                    Select<ion-input type="hidden" v-bind:value="food.id"></ion-input>
-                  </ion-button>
-                </ion-col>-->
               </ion-row>
               
             </ion-col>
@@ -88,90 +75,29 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
   name: 'Modal',
   props: {
+    
   },
   data() {
     return {
       orderHistory: "",
       totalPrice: 0,
+      
     }
+  },
+  created() {
+    this.truck.foods.map(food => {
+      Vue.set(food, 'count', 0);
+    });
   },
   methods: {
     closeModal() {
       return this.$ionic.modalController
         .dismiss()
-    },getColumns(numColumns, columnOptions) {
-      let columns = [];
-      for (let i = 0; i < numColumns; i++) {
-        let len = columnOptions[i].data.length;
-        // if a na,e is provided then set the object to the
-        // the name provided
-        let colName = columnOptions[i].name || `col-${i}`;
-        let col = {
-          name: colName,
-          options: this.getColumnOptions(i, len, columnOptions)
-        };
-        columns.push(col);
-      }
-      return columns;
-    },
-    getColumnOptions(columnIndex, numOptions, columnOptions) {
-      let options = [];
-      for (let i = 0; i < numOptions; i++) {
-        // if there is no value property provided in the column data
-        // then set value to the row index
-        if (typeof columnOptions[columnIndex].data[i] == "object") {
-          options.push({
-            text: columnOptions[columnIndex].data[i % numOptions][0],
-            value: columnOptions[columnIndex].data[i % numOptions][1]
-          });
-        } else {
-          options.push({
-            text: columnOptions[columnIndex].data[i % numOptions],
-            value: i
-          });
-        }
-      }
-      return options;
-    } ,async openSimplePicker(e) {
-      const currentFoodIndex = parseInt(e.target.childNodes[1].value)-1;
-      // get the picker controller this way for now
-      const pickerController = document.querySelector("ion-picker-controller");
-      await pickerController.componentOnReady();
-      // set the arry for the column information, you can set the name of the column
-      // and the array of data that should be rendered in the column
-      let colOptions = [
-        { name: "number", data: ["5", "4", "3", "2", "1", "0"] }
-      ];
-      // now create the picker, but first you need to create the columns
-      // in the proper format for ionic vue to deal with them
-      const picker = await pickerController.create({
-        columns: this.getColumns(1, colOptions),
-        buttons: [
-          {
-            text: "Cancel",
-            role: "cancel"
-          },
-          {
-            text: "Confirm",
-            role: "confirm",
-            handler: value => {
-              console.log("Got Value", value.number);
-              this.foods[currentFoodIndex].count = parseInt(value.number.text);
-              
-              
-              picker.dismiss(value, "confirm");
-            }
-          }
-        ]
-      });
-      picker.onDidDismiss().then(v => {
-        console.log(v);
-      });
-      // present the picker
-      await picker.present();
     }, payConfirm(){
       return this.$ionic.alertController
         .create({
@@ -205,19 +131,15 @@ export default {
       }
     },
     
-    btnUpClick(e) {
-      this.truck.foods[e.target.childNodes[0].value-1].count++;
+    btnUpClick(food) {
+      console.log(food.count++);
       this.setOrder();
     },
-    btnDownClick(e) {
-      if(this.truck.foods[e.target.childNodes[0].value-1].count > 0) {
-        console.log(this.truck.foods[e.target.childNodes[0].value-1].count);
-        this.truck.foods[e.target.childNodes[0].value-1].count--;
+    btnDownClick(food) {
+      if(food.count > 0) {
+        console.log(food.count--);
         this.setOrder();
       }
-      
-    },
-    countChange(){
       
     }
   }
