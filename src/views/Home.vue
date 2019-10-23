@@ -1,17 +1,17 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar color="warning">
+    <ion-header class="header">
+      <ion-toolbar color="warning" class="toolbar">
         <ion-title>푸트맵</ion-title>
         <ion-buttons slot="primary">
-          <ion-button @click="showLoginPrompt">
+          <ion-button @click="showLoginPrompt" class="button">
             <ion-icon slot="icon-only" name="settings"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <!-- <ion-fab style="position:absolute;background-color: transparent;z-index:2;">강찬따리 강찬따</ion-fab> -->
+      <ion-searchbar class="searchBackground"  @search="searchLocation"></ion-searchbar>
       <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="posiButton">
         <ion-fab-button color="warning" @click="setCurrentLocation">
           <ion-icon name="locate"></ion-icon>
@@ -36,7 +36,8 @@
   
 </template>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0efaf6ad743635fa29b5dcd6927f99e6"></script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0efaf6ad743635fa29b5dcd6927f99e6&libraries=services,clusterer,drawing"></script>
 <script>
 import TruckModal from '../components/TruckModal.vue'
 import VueDaumMap from 'vue-daum-map';
@@ -53,9 +54,25 @@ export default {
       mapTypeId: VueDaumMap.MapTypeId.NORMAL,
       libraries: [],
       mapObject: null,
-      trucks:[]
+      trucks:[],
+      searchText:'',
     }),
     methods: {
+      async searchLocation(e){
+        await axios.get('http://dapi.kakao.com/v2/local/search/address.json',
+        {
+          params: {
+            query: e.target.value
+          },
+          headers: {
+            Authorization: 'KakaoAK e8a2cb43fae0248ba00ee6c8ff14cf3b'
+          },
+          timeout: 3000
+        }).then(res=>{
+          var moveLatLon = new kakao.maps.LatLng(res.data.documents[0].y, res.data.documents[0].x);
+          this.mapObject.setCenter(moveLatLon);
+        });
+      },
       openModal(truckid) {
         return this.$ionic.modalController
           .create({
@@ -90,7 +107,6 @@ export default {
           this.trucks = res.data;
         });
 
-        
 
         // 지도의 현재 영역을 얻어옵니다
         var bounds = map.getBounds();
@@ -221,7 +237,9 @@ export default {
 .label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
 .label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
 .label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
-
-
+.header-ios ion-toolbar.toolbar:last-child{
+  --border-width:0px;
+}
+.searchBackground {background: #ffce00; --background: white; border-color: #ffcc00;}
 .posiButton {margin-bottom: 13%; margin-left: 2%}
 </style>
