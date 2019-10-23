@@ -2,11 +2,11 @@
 
 ## 목차
 
-- [컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#컴퓨터-구성-/-필수-조건-안내-prerequisites)
+- [컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#컴퓨터-구성--필수-조건-안내-prerequisites)
 - [설치 안내 (Installation Process)](#설치-안내-installation-process)
 - [사용법 (Getting Started)](#사용법-getting-started)
 - [파일 정보 및 목록 (File Manifest)](#파일-정보-및-목록-file-manifest)
-- [저작권 및 사용권 정보 (Copyright / End User License)](#저작권-및-사용권-정보-copyright-/-end-user-license)
+- [저작권 및 사용권 정보 (Copyright / End User License)](#저작권-및-사용권-정보-copyright--end-user-license)
 - [배포자 및 개발자의 연락처 정보 (Contact Information)](#배포자-및-개발자의-연락처-정보-contact-information)
 - [알려진 버그 (Known Issues)](#알려진-버그-known-issues)
 - [문제 발생에 대한 해결책 (Troubleshooting)](#문제-발생에-대한-해결책-troubleshooting)
