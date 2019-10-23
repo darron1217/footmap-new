@@ -5,7 +5,7 @@
         <ion-title>푸트맵</ion-title>
         <ion-buttons slot="primary">
           <ion-button @click="showLoginPrompt">
-            <ion-icon slot="icon-only" name="person"></ion-icon>
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>

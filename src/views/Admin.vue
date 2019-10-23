@@ -6,6 +6,11 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>푸트맵 관리자</ion-title>
+        <ion-buttons slot="end">
+          <ion-button @click="go('/')">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -38,3 +43,13 @@
     </ion-content>
   </ion-page>
 </template>
+
+<script>
+export default {
+  methods: {
+    go(url) {
+      this.$router.push(url);
+    },
+  },
+}
+</script>
