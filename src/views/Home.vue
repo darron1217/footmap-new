@@ -1,5 +1,4 @@
 <template>
-    <div>
   <ion-page>
     <ion-header>
       <ion-toolbar color="warning">
@@ -11,11 +10,8 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <ion-button @click="openModal(1)">Open Modal</ion-button>
-    </ion-content>
-  </ion-page>
-  <vue-daum-map
+    <ion-content>
+      <vue-daum-map
 
       :appKey="appKey"
 
@@ -41,9 +37,11 @@
       @tilesloaded="onMapEvent('tilesloaded', $event)"
       @maptypeid_changed="onMapEvent('maptypeid_changed', $event)"
 
-      style="width:400px;height:600px;">
+      style="width:100%;height:100%;">
     </vue-daum-map>
-</div>
+    </ion-content>
+  </ion-page>
+  
 </template>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0efaf6ad743635fa29b5dcd6927f99e6"></script>
@@ -58,7 +56,7 @@ export default {
   components: {VueDaumMap},
     data: () => ({
       appKey: "0efaf6ad743635fa29b5dcd6927f99e6",
-      center: {lat:126.7867031999999, lng:37.4495673},
+      center: {lat:37.4495415999999, lng:126.7867055},
       level: 4,
       mapTypeId: VueDaumMap.MapTypeId.NORMAL,
       libraries: [],
@@ -141,7 +139,7 @@ export default {
           map.setCenter(moveLoca);
 
         }, function(error) {
-          console.error(error);
+          
         }, {enableHighAccuracy: true,
         timeout: 5000});
         }else{
@@ -282,3 +280,11 @@ export default {
   }
 }
 </script>
+<style>
+  
+.label * {display: inline-block;vertical-align: top;}
+.label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
+.label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+.label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
+
+</style>
