@@ -1,19 +1,36 @@
 <template>
-  <div class="ion-page">
+  <ion-page>
     <ion-header>
       <ion-toolbar>
         <ion-title>Hello World</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <h1>Welcome To @ionic/vue</h1>
-      <img alt="Vue logo" src="../assets/logo.png">
+      <ion-button @click="openModal">Open Modal</ion-button>
     </ion-content>
-  </div>
+  </ion-page>
 </template>
 
 <script>
+import TruckModal from '../components/TruckModal.vue'
+
 export default {
-  name: "home",
-};
+  name: 'App',
+  methods: {
+    openModal(truckid) {
+      console.log("@@@@@@@@@@@@@@@");
+      return this.$ionic.modalController
+        .create({
+          component: TruckModal,
+          componentProps: {
+            title: "Teeste",
+            id: truckid,
+            image: "",
+            foods:[]
+          }
+        })
+        .then(m => m.present())
+    },
+  }
+}
 </script>
