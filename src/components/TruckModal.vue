@@ -21,7 +21,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list v-for="food in foods"
+      <ion-list v-for="food in truck.foods"
                 v-bind:key="food.id" lines="full">
         
         <ion-item class="foodInfo">
@@ -91,35 +91,12 @@
 export default {
   name: 'Modal',
   props: {
-    title: { type: String, default: 'Super Modal' },
+    truck: { type: Object, default() {}}
   },
   data() {
     return {
       orderHistory: "",
       totalPrice: 0,
-      truck: {
-        name: 'Chicken Truck',
-        thumbnail: "/img/hiclipart.com-id_hongw.png"
-      }, foods: [{
-        id:1,
-        image: "https://img.kbs.co.kr/kbs/620/nsimg.kbs.co.kr/data/news/2017/01/04/3405677_bH6.jpg",
-        name: 'Chicken',
-        count: 0,
-        price: 20000
-      },{
-        id:2,
-        image: "https://cdn.pixabay.com/photo/2016/03/15/08/02/food-1257054_960_720.jpg",
-        name: 'Gimbab',
-        count: 0,
-        price: 2500
-      },{
-        id:3,
-        image: "https://img-wishbeen.akamaized.net/plan/1449453370478_2015-12-0318;50;19.PNG",
-        name: 'Tteok',
-        count: 0,
-        price: 4000
-      }]
-      
     }
   },
   methods: {
