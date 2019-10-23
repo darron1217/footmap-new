@@ -56,23 +56,16 @@ export default {
       trucks:[]
     }),
     methods: {
-      getTrucks(){
-          this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
-          axios.get(`http://localhost:3000/trucks?_embed=foods`).then(res => {
-            this.truck = res.data;
-            console.log(this.truck);
-          });
-        });
-      },
       openModal(truckid) {
         return this.$ionic.modalController
           .create({
             component: TruckModal,
             componentProps: {
               data:{
-                truck : this.trucks[truckid]
+
               },
               propsData: {
+                truck : this.trucks[truckid]
               },
             },
         })
@@ -111,11 +104,11 @@ export default {
 
         var positions = [
           {
-            content: this.trucks[0].title,
+            content: this.trucks[0].name,
             latlng : new kakao.maps.LatLng(this.trucks[0].lat, this.trucks[0].lng)
           },
           {
-            content: this.trucks[1].title,
+            content: this.trucks[1].name,
             latlng : new kakao.maps.LatLng(this.trucks[1].lat, this.trucks[1].lng)
           }
         ];
