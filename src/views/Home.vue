@@ -93,7 +93,6 @@ export default {
       }]
 =======
       trucks:[]
->>>>>>> Stashed changes
     }),
     methods: {
       getTrucks(){
