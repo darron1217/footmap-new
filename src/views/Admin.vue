@@ -1,8 +1,11 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Hello World</ion-title>
+      <ion-toolbar color="warning">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>푸트맵 관리자</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>

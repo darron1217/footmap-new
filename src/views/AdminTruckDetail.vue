@@ -1,5 +1,14 @@
 <template>
-  <div>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar color="warning">
+        <ion-buttons slot="start">
+          <ion-back-button text="뒤로"></ion-back-button>
+        </ion-buttons>
+        <ion-title>푸드트럭 등록</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
       <form v-on:submit.prevent="processForm">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
           <ion-item>
@@ -17,7 +26,8 @@
           <ion-button color="warning" expand="block" type="submit" class="ion-no-margin">저장</ion-button>
         </div>
       </form>
-  </div>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script>
