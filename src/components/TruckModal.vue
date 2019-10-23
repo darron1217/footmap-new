@@ -11,7 +11,7 @@
               <!--<img :src="truck.thumbnail">-->
               <img src="../../static/img/hiclipart.com-id_hongw.png">
             </ion-thumbnail>  
-            {{ title }}
+            {{ truck.name }}
           </ion-item>
           
         </ion-title>
@@ -91,15 +91,7 @@
 export default {
   name: 'Modal',
   props: {
-<<<<<<< Updated upstream
     truck: { type: Object, default() {}}
-=======
-    truck: {type : Object, default() }
-    // title: { type: String, default: 'Super Modal' },
-    // truckid: {type: Number, default: -1},
-    // image: {type: String, default: ''},
-    // foodinfos: {type: Array, default: []}
->>>>>>> Stashed changes
   },
   data() {
     return {
