@@ -6,35 +6,49 @@
           <ion-back-button text="뒤로"></ion-back-button>
         </ion-buttons>
         <ion-title>푸드트럭 정보</ion-title>
+        <ion-buttons slot="primary" style="padding-left: 10px;">
+          <ion-button @click="deleteTruck" v-show="truck.id">삭제</ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <form v-on:submit.prevent="processForm">
-        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-list>
           <ion-list-header>기본정보</ion-list-header>
           <ion-item>
             <ion-label position="floating">트럭이름 <ion-text color="danger">*</ion-text></ion-label>
             <ion-input required type="text" name="name" v-bind:value="truck.name" @ionInput="truck.name = $event.target.value;"></ion-input>
           </ion-item>
-
           <ion-item>
-            <ion-label position="floating">설명</ion-label>
+            <ion-label position="floating">전화번호 <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="phone" v-bind:value="truck.phone" @ionInput="truck.phone = $event.target.value;"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">소개</ion-label>
             <ion-textarea name="description" v-bind:value="truck.description" @ionInput="truck.description = $event.target.value;"></ion-textarea>
           </ion-item>
         </ion-list>
 
         <ion-list>
           <ion-list-header>음식목록</ion-list-header>
-          <ion-item v-for="food in truck.foods" v-bind:key="food.id">
-            <ion-thumbnail slot="start">
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            </ion-thumbnail>
-            <ion-label>
-              <h3>{{ food.name }}</h3>
-              <p>{{ food.description }}</p>
-            </ion-label>
-            <h3>{{ food.price }}원</h3>
-          </ion-item>
+          <ion-item-sliding v-for="food in truck.foods" v-bind:key="food.id" v-show="!food.deleted" button>
+              <ion-item @click="showFoodPrompt(food)">
+                <ion-thumbnail slot="start">
+                  <img :src="food.image">
+                </ion-thumbnail>
+                <ion-label>
+                  <h3>{{ food.name }}</h3>
+                  <p>{{ food.description }}</p>
+                </ion-label>
+                <h3>{{ food.price }}원</h3>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option color="danger" @click="deleteFood(food)">삭제</ion-item-option>
+              </ion-item-options>
+          </ion-item-sliding>
+          <ion-button expand="full" fill="clear" @click="showFoodPrompt({price:0})">
+            <ion-icon color="warning" slot="icon-only" name="ios-add-circle-outline"></ion-icon>
+          </ion-button>
         </ion-list>
 
         <div class="ion-padding">
@@ -47,27 +61,33 @@
 
 <script>
 import axios from 'axios'
+import Vue from 'vue'
 
 export default {
   props: ['id'],
   data() {
     return {
-      truck: {},
+      truck: {
+        foods: []
+      },
+      deletedFoods: [],
     }
   },
   mounted: function () {
     this.$nextTick(function () {
       // Code that will run only after the
       // entire view has been rendered
-      this.getTruck();
+      this.getTruck(this.id);
     })
   },
   methods: {
-    getTruck() {
+    getTruck(id) {
+      // 등록화면이면 truck정보 가져오기 취소
+      if(id == 'new') return;
       // 로딩 띄우면서 정보가져오기
       this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
         loading.present();
-        axios.get(`http://localhost:3000/trucks/${this.id}?_embed=foods`).then(res => {
+        axios.get(`http://localhost:3000/trucks/${id}?_embed=foods`).then(res => {
           this.truck = res.data;
           loading.dismiss();
           console.log(this.truck);
@@ -79,21 +99,139 @@ export default {
       // 로딩 띄우면서 저장하기
       this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
         loading.present();
-        axios.put(`http://localhost:3000/trucks/${this.id}`, this.truck).then(res => {
+        // 저장하기전 foods는 제거
+        let foods = this.truck.foods;
+        delete this.truck.foods;
+
+        // 저장콜백
+        let callback = res => {
           console.log(res);
-          this.truck = res.data;
+
           loading.dismiss();
           // 성공하면 알림
           this.$ionic.alertController.create({
-            header: '등록되었습니다',
-            message: `<b>${this.truck.name} 트럭이 등록되었습니다</b>`,
+            header: '저장되었습니다',
+            message: `<b>${this.truck.name} 트럭이 저장되었습니다</b>`,
             buttons: [{
               text: 'OK'
             }]
           }).then(alert => alert.present());
-        });
+
+          let truck = res.data;
+          // 음식들저장
+          foods.map(async (food, i) => {
+            // 새로등록할때를 대비해 truckId를 계속 넣어주도록 구현
+            food.truckId = truck.id;
+            if(food.deleted) {
+              await axios.delete(`http://localhost:3000/foods/${food.id}`);
+            }
+            // id가 있으면 수정, 없으면 입력
+            else if(food.id === undefined)
+              await axios.post(`http://localhost:3000/foods`, food).then(res => {
+                foods[i] = res.data;
+              });
+            else 
+              await axios.put(`http://localhost:3000/foods/${food.id}`, food);
+          });
+
+          // 저장후엔 뒤로가기
+          this.$router.go(-1);
+        }
+        
+        // 등록 또는 수정
+        if(this.id == 'new') {
+          axios.post(`http://localhost:3000/trucks`, this.truck).then(callback);
+        }
+        else {
+          axios.put(`http://localhost:3000/trucks/${this.id}`, this.truck).then(callback);
+        }
+
       });
-    }
+    },
+    // 음식 순서바꿀때 사용
+    // onReorder({detail}) {
+    //   detail.complete(true);
+    // },
+    // 음식 등록&수정 화면
+    showFoodPrompt(food) {
+      return this.$ionic.alertController
+        .create({
+          header: '음식정보',
+          inputs: [
+            {
+              name: 'name',
+              type: 'text',
+              value: food.name,
+              placeholder: '음식 이름을 입력하세요',
+            },
+            {
+              name: 'description',
+              type: 'text',
+              value: food.description,
+              placeholder: '음식 설명을 입력하세요',
+            },
+            {
+              name: 'price',
+              type: 'number',
+              value: food.price,
+              placeholder: '음식 가격을 입력하세요',
+            },
+          ],
+          buttons: [
+            {
+              text: '취소',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+
+              },
+            },
+            {
+              text: '확인',
+              handler: (foodData) => {
+                food.name = foodData.name;
+                food.description = foodData.description;
+                food.price = foodData.price;
+                
+                // 새로등록이면 foods목록에 push
+                if(!food.id) {
+                  this.truck.foods.push(food);
+                }
+
+                this.$ionic.toastController.create({
+                  color: 'dark',
+                  duration: 2000,
+                  message: '저장되었습니다'
+                }).then(t => t.present());
+                
+              },
+            },
+          ],
+        })
+        .then(a => a.present());
+    },
+    deleteFood(food) {
+      Vue.set(food, 'deleted', true);
+      
+      this.$ionic.toastController.create({
+        color: 'dark',
+        duration: 2000,
+        message: '삭제되었습니다'
+      }).then(t => t.present());
+    },
+    async deleteTruck() {
+      await axios.delete(`http://localhost:3000/trucks/${this.id}`);
+      // 성공하면 알림
+      this.$ionic.alertController.create({
+        header: '삭제되었습니다',
+        message: `<b>트럭이 삭제되었습니다</b>`,
+        buttons: [{
+          text: 'OK'
+        }]
+      }).then(alert => alert.present());
+      // 삭제후엔 뒤로가기
+      this.$router.go(-1);
+    },
   }
 }
 </script>

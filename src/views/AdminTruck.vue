@@ -6,6 +6,11 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>푸드트럭 관리</ion-title>
+        <ion-buttons slot="end">
+          <ion-button @click="go('/')">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -20,6 +25,9 @@
             <p>{{ truck.description }}</p>
           </ion-label>
         </ion-item>
+        <ion-button expand="full" fill="clear" @click="go('/admintruck/new')">
+          <ion-icon color="warning" slot="icon-only" name="ios-add-circle-outline"></ion-icon>
+        </ion-button>
       </ion-list>
     </ion-content>
   </ion-page>
@@ -49,7 +57,7 @@ export default {
       axios.get('http://localhost:3000/trucks').then(res => {
         this.trucks = res.data;
       });
-    }
+    },
   },
 }
 </script>
