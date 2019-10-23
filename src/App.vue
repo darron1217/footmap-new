@@ -42,10 +42,3 @@ export default {
   },
 }
 </script>
-<<<<<<< Updated upstream
-=======
-
-<style>
-</style>
-
->>>>>>> Stashed changes

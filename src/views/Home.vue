@@ -11,6 +11,12 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
+      <!-- <ion-fab style="position:absolute;background-color: transparent;z-index:2;">강찬따리 강찬따</ion-fab> -->
+      <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="posiButton">
+        <ion-fab-button color="warning" @click="setCurrentLocation">
+          <ion-icon name="locate"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
       <vue-daum-map
 
       :appKey="appKey"
@@ -23,7 +29,7 @@
       @load="onLoad"
 
 
-      style="width:100%;height:100%;">
+      style="position: relative; width:100%;height:100%;z-index:1;">
     </vue-daum-map>
     </ion-content>
   </ion-page>
@@ -79,7 +85,8 @@ export default {
           map.setCenter(moveLoca);
 
         }, function(error) {
-          
+          var moveLoca = new kakao.maps.LatLng(37.4495528, 126.7867041);
+          map.setCenter(moveLoca);
         }, {enableHighAccuracy: true,
         timeout: 5000});
         }else{
@@ -150,6 +157,21 @@ export default {
       onMapEvent (event, params) {
         console.log(`Daum Map Event(${event})`, params);
       },
+      setCurrentLocation(){
+        var obj = this;
+        if (navigator.geolocation) { // GPS를 지원하면
+          navigator.geolocation.getCurrentPosition(function(position) {
+          var moveLoca = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          obj.mapObject.panTo(moveLoca);
+        }, function(error) {
+          var moveLoca = new kakao.maps.LatLng(37.4495528, 126.7867041);
+          obj.mapObject.panTo(moveLoca);
+        }, {enableHighAccuracy: true,
+        timeout: 5000});
+        }else{
+          alert("GPS를 지원하지 않습니다");
+        }
+      },
     // 로그인
     showLoginPrompt() {
       return this.$ionic.alertController
@@ -207,4 +229,6 @@ export default {
 .label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
 .label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
 
+
+.posiButton {margin-bottom: 13%; margin-left: 2%}
 </style>
