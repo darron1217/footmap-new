@@ -2,24 +2,74 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="secondary" style="padding-left: 10px;">
-          <ion-button @click="closeModal">Close</ion-button>
-        </ion-buttons>
-        <ion-title>
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img :src="truck.image">
-            </ion-thumbnail>  
-            {{ truck.title }}
-          </ion-item>
-          
+        <ion-title>  
         </ion-title>
-        <ion-buttons slot="primary">
-          <ion-button @click="payConfirm">Submit</ion-button>
+        <ion-buttons slot="primary" style="padding-left: 10px;">
+          <ion-button @click="closeModal">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
+
+      <!-- Food Truck Infomation View -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="medium" style=" text-align : center; padding-bottom: 15px;"> 
+            {{ truck.name }}
+          </ion-card-title>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegnsUD0Zjmms7vGD4InbXlAoc8uuYQH62hWINvEUgUpBhzA8OsA&s">
+          
+          
+          <ion-card-subtitle>
+            <span class="gradeTxt"> 
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              <ion-icon class="icStar" name="star-outline"></ion-icon>
+              {{ truck.grade.toFixed(1) }}
+            </span>
+          </ion-card-subtitle>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ truck.description }}
+        </ion-card-content>
+        <ion-item-group class="infoBtnGroup">
+          <ion-grid>
+            <ion-row >
+              <ion-col size=4>
+                <ion-button>
+                  <ion-icon name="call"></ion-icon>전화
+                </ion-button>
+              </ion-col>
+              <ion-col size=4>
+                <ion-button>
+                  <ion-icon name="heart-empty"></ion-icon>찜
+                </ion-button>
+              </ion-col>
+              <ion-col size=4>
+                <ion-button>
+                  <ion-icon name="share"></ion-icon>공유
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=12>
+                <ion-button @click="payConfirm">
+                  <ion-icon name="card"></ion-icon>  결제하기
+                </ion-button>
+                
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-item-group>
+      </ion-card>
+      <!-- Food Truck Infomation View -->
+
+      <!-- Food List View  -->
       <ion-list v-for="(food, index) in truck.foods"
                 v-bind:key="index" lines="full">
         <ion-item class="foodInfo">
@@ -39,7 +89,7 @@
               <ion-row class="foodConfirm">
                 <ion-col size=12>
                   <ion-col size=3>
-                    <ion-button color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
+                    <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
                       <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon  name="arrow-dropup"></ion-icon>
                     </ion-button>
@@ -48,19 +98,19 @@
                     <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
                   </ion-col>
                   <ion-col size=3>
-                    <ion-button color="dark" fill="clear" size="small" @click="btnDownClick(food)">
+                    <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnDownClick(food)">
                       <ion-input type="hidden" v-bind:value="index"></ion-input>
                       <ion-icon name="arrow-dropdown"></ion-icon>
                     </ion-button>
                   </ion-col> 
                 </ion-col>
               </ion-row>
-              
             </ion-col>
             
           </ion-row>
         </ion-item>
       </ion-list>
+      <!-- Food List View  -->
       <!--
       <ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="light">
@@ -79,19 +129,31 @@ import Vue from 'vue';
 export default {
   name: 'Modal',
   props: {
-    
+    truck: {type: Object, defaultValue: {}}
   },
   data() {
     return {
       orderHistory: "",
       totalPrice: 0,
-      
     }
   },
   created() {
     this.truck.foods.map(food => {
       Vue.set(food, 'count', 0);
     });
+  },
+  mounted() {
+    let i = 0;
+    for(; i < parseInt(this.truck.grade); i++) {
+      this.$el.querySelectorAll('.icStar')[i].name = "star";
+    }
+    if(this.truck.grade - i > 0) {
+      this.$el.querySelectorAll('.icStar')[i++].name = "star-half";
+    } 
+    for(; i < 5; i++) {
+      this.$el.querySelectorAll('.icStar')[i].name = "star-outline";
+    }
+    
   },
   methods: {
     closeModal() {
@@ -161,9 +223,20 @@ export default {
     --width: 100%;
   }
 
-  ion-button {
+  ion-button.btnCount {
     position: relative;
     top: -5px;
+    
+  }
+  .infoBtnGroup ion-button {
+    --background: #ffffff;
+    --border-color: #afafaf;
+    --border-style: solid;
+    --border-width: 1px;
+    --color: #3f3f3f;
+    --background-activated: #dddddd;
+    --color-activated: #ffffff;
+    width:100%;
   }
   .foodNameTxt {
     font-size: 19px;
@@ -193,5 +266,26 @@ export default {
     --padding-bottom : 0px;
     --padding-start: 0px;
     --padding-end: 0px;
+  }
+  ion-card-header {
+     border-bottom: 1px solid #bbbbbb;
+     padding-left: 0px;
+     padding-right: 0px;
+     margin-left: 20px;
+     margin-right: 20px;
+  }
+  ion-card-subtitle {
+    text-align: center;
+  }
+  .gradeTxt {
+    font-size: 28px;
+    font-weight: lighter;
+  }
+  .gradeTxt .icStar {
+    position: relative;
+    top: 5px;
+    font-size: 30px;
+    color: #ffb245;
+    font-weight: bold;
   }
 </style>
