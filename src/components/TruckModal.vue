@@ -372,7 +372,9 @@ export default {
   ion-row {
     --width: 100%;
   }
-
+  ion-card {
+    background: #fae3e3eb;
+  }
   ion-button.btnCount {
     position: relative;
     top: -5px;
@@ -403,8 +405,8 @@ export default {
     width:100%;
   }
   .listMenuSelected {
-    --background: #eeeeee!important;
-    --background-activated: #eeeeee!important;
+    --background: #fae3e3eb!important;
+    --background-activated: #fae3e3eb!important;
     --color-activated:   #000000!important;
   }
   .foodNameTxt {
