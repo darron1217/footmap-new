@@ -120,7 +120,7 @@
           </ion-list>
         </ion-row>
         <ion-row class="reviewGrid hiddenRow">
-          <ion-row style="padding-bottom: 15px; border-bottom: 1px solid #afafaf">
+          <ion-row style="padding-bottom: 15px; border-bottom: 1px solid #f58ccd">
             <ion-col size=12 style="text-align: center;">
               <span class="gradeTxt"> 
               <ion-icon class="icStar" name="star-outline"></ion-icon>
@@ -141,7 +141,7 @@
             </ion-col>
           </ion-row>
           <ion-col>
-            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #fdb1e0">
               <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
               <ion-col class="reviewContentsDiv" size=9>
                 <ion-row class="userNick" style="color: #000000; font-size:20px;">
@@ -152,7 +152,7 @@
                 </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #fdb1e0">
               <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
               <ion-col class="reviewContentsDiv" size=9>
                 <ion-row class="userNick" style="color: #000000; font-size:20px;">
@@ -163,7 +163,7 @@
                 </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #dddddd">
+            <ion-row class="reviewContentsRow" style="border-bottom: 1px dashed #fdb1e0 ">
               <ion-col class="reviewUserThumbDiv" size=3><ion-icon name="person" style="width:100%; height: 100%;"></ion-icon></ion-col>
               <ion-col class="reviewContentsDiv" size=9>
                 <ion-row class="userNick" style="color: #000000; font-size:20px;">
@@ -293,8 +293,12 @@ export default {
                     this.$ionic.alertController.create({
                       header: '주문이 완료되었습니다.',
                       buttons: [{
-                        text: 'OK'
-                      }]
+                        text: 'OK',
+                        handler: () => {
+                          return this.$ionic.modalController.dismiss()
+                      }
+                      }],
+                      
                     }).then(alert => alert.present());
                   });
                   console.log('loding wanryo');
@@ -306,6 +310,7 @@ export default {
         })
         .then(a => a.present())
     },
+    
     setOrder() {
       this.orderHistory="";
       this.totalPrice=0;
