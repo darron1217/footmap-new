@@ -33,7 +33,7 @@ npm install -g json-server
 
 ### Json Server DB 구동
 ```
-json-server --watch db.json
+npm run api
 ```
 
 ### 프로젝트 실행
