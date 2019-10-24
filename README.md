@@ -73,11 +73,11 @@ Github
      │   App.vue
      │   main.js
      ├─views
-     │   Admin.vue
      │   AdminTruck.vue
      │   AdminTruckDetail.vue
      │   Home.vue
      │   LoginView.vue
+     │   Truck.vue
      ├─components
      │   TruckModal.vue
      └─router

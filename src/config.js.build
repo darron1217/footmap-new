@@ -1,0 +1,3 @@
+const APIURL = '//'+window.location.hostname + '/api/';
+
+export default APIURL
