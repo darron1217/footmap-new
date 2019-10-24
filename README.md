@@ -9,6 +9,8 @@
 
 소비자와 공급자의 고민을 해결하기 위한 웹 애플리케이션을 만들었습니다.
 
+<img src="https://github.com/darron1217/footmap-new/blob/master/resources/screenshot1_home.gif?raw=true">
+
 ## 목차
 
 - [컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#컴퓨터-구성--필수-조건-안내-prerequisites)
