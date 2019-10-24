@@ -9,7 +9,7 @@
           <ion-card-title color="medium" style=" text-align : center; padding-bottom: 15px;"> 
             {{ truck.name }}
           </ion-card-title>
-          <img class="storeImg" src="http://callidaum.co.kr/data/file/portfolio/2040046850_qUK0oF52_1e1e0e9813f0b46e6663bc6cb2a03347ad56bef4.jpg">
+          <img class="storeImg" :src="truck.image">
           
           
           <ion-card-subtitle>
@@ -83,7 +83,7 @@
           <ion-list v-for="(food, index) in truck.foods"
                 v-bind:key="index" lines="full">
             <ion-item class="foodInfo">
-              <ion-row>
+              <ion-row style="margin-bottom: 10px;">
                 <ion-col size=4>
                   <img :src="food.image" class="foodImg">
                 </ion-col>
@@ -366,7 +366,7 @@ export default {
   .foodImg {
     width: 100%;
     height: 100%;
-    max-height: 120px;
+    max-height: 105px;
   }
 
   ion-row {
