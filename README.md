@@ -31,19 +31,34 @@ npm install -g json-server
 
 ## 사용법 (Getting Started)
 
+### Json Server DB 구동
+```
+json-server --watch db.json
+```
+
 ### 프로젝트 실행
 ```
 npm run serve
 ```
 
-### Json Server 구동
-```
-json-server --watch db.json
-```
-
 ## 파일 정보 및 목록 (File Manifest)
 
-- db.json (json-server 데이터 파일)
+```sh
+Github
+  │  README.md
+  │  db.json
+  │  package.json
+  └─src
+     │   App.vue
+     ├─views
+     │   Admin.vue
+     │   AdminTruck.vue
+     │   AdminTruckDetail.vue
+     ├─components
+     │   TruckModal.vue
+     └─router
+         index.js
+```
 
 ## 저작권 및 사용권 정보 (Copyright / End User License)
 
@@ -57,12 +72,12 @@ The Footmap is open-source software licensed under the MIT license.
 
 ## 알려진 버그 (Known Issues)
 
-- 화면 이동시 맵이 1/8만 보이는 현상
+- 화면을 이동시 일시적으로 맵이 1/8만 보이는 현상
 - 
 
 ## 문제 발생에 대한 해결책 (Troubleshooting)
 
-[Github 리포지토리](https://github.com/darron1217/footmap-new)에 Issue를 등록해주세요! 언제나 환영입니다!
+[Github 리포지토리](https://github.com/darron1217/footmap-new/)에 Issue를 등록해주세요! 언제나 환영입니다!
 
 ## 크레딧 (Credit)
 
