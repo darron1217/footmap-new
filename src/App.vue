@@ -38,10 +38,18 @@ export default {
         return this.$route.path === '/'
     }
   },
+  mounted() {
+    // Pusher등록
+    var channel = this.$pusher.subscribe('my-channel');
+
+    channel.bind('my-event', (data) => {
+        console.log(`${data.message}`);
+    });
+  },
   methods: {
     go(url) {
       this.$router.push(url);
-      this.$ionic.menuController.close();
+      this.$ionic.menuController.close(); 
     },
   },
 }
