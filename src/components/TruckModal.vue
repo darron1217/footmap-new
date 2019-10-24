@@ -99,7 +99,7 @@
                   <ion-row class="foodConfirm">
                     <ion-col size=12>
                       <ion-col size=3>
-                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnUpClick(food)" value="aa">
+                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnUpClick(food, index)" value="aa">
                           <ion-input type="hidden" v-bind:value="index"></ion-input>
                           <ion-icon  name="arrow-dropup"></ion-icon>
                         </ion-button>
@@ -108,7 +108,7 @@
                         <ion-input type="number" :value="food.count" style="display: inline-block; width: 20%;" disabled=true v-model="food.count"></ion-input>
                       </ion-col>
                       <ion-col size=3>
-                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnDownClick(food)">
+                        <ion-button class="btnCount" color="dark" fill="clear" size="small" @click="btnDownClick(food, index)">
                           <ion-input type="hidden" v-bind:value="index"></ion-input>
                           <ion-icon name="arrow-dropdown"></ion-icon>
                         </ion-button>
@@ -203,16 +203,28 @@ export default {
   },
   data() {
     return {
-      orderFoodList: {},
+      orderFoodList: [],
       orderHistory: "",
       totalPrice: 0,
       userInputGrade: 0.0,
     }
   },
   created() {
+    let tempObj = {};
     this.truck.foods.map(food => {
       Vue.set(food, 'count', 0);
     });
+    for(let i = 0; i < this.truck.foods.length; i++) {
+      tempObj = {};
+      tempObj['truckId']=this.truck.id;
+      tempObj['foodId']= this.truck.foods[i].id;
+      tempObj['count'] = 0;
+      tempObj['isReady']=false;
+
+      this.orderFoodList[i] = tempObj;
+    }
+
+    console.log(this.orderFoodList);
   },
   mounted() {
     let i = 0;
@@ -272,15 +284,15 @@ export default {
             }, {
             text: 'OK',
             handler: () => {  
-              this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
-                  axios.put(`http://localhost:3000/orders/`, ).then(res => {
+              for(let i = 0; i < this.orderFoodList.length; i++){
+                if(this.orderFoodList[i].count > 0) {
+                  this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
+                  axios.post(`http://localhost:3000/orders`, this.orderFoodList[i]).then(res => {
                     console.log(res);
-                    this.truck = res.data;
                     loading.dismiss();
                     // 성공하면 알림
                     this.$ionic.alertController.create({
-                      header: '등록되었습니다',
-                      message: `<b>${this.truck.name} 주문이 완료되었습니다.</b>`,
+                      header: '주문이 완료되었습니다.',
                       buttons: [{
                         text: 'OK'
                       }]
@@ -288,31 +300,36 @@ export default {
                   });
                   console.log('loding wanryo');
                 });
+                }
+              }
             }
-            }],
+          }],
         })
         .then(a => a.present())
     },
     setOrder() {
       this.orderHistory="";
       this.totalPrice=0;
-      let tempObj = {};
+      //let tempObj = {};
       for(let i = 0; i < this.truck.foods.length; i++) {
         if(this.truck.foods[i].count != "0") {
-          tempObj.push('');
           this.orderHistory += this.truck.foods[i].name + "   " + this.truck.foods[i].count + '개<br>';
           this.totalPrice += (this.truck.foods[i].price * this.truck.foods[i].count);
         }
       }
     },
     
-    btnUpClick(food) {
-      console.log(food.count++);
+    btnUpClick(food, index) {
+      food.count++;
+      this.orderFoodList[index].count = food.count;
+      console.log(this.orderFoodList[index].count);
       this.setOrder();
     },
-    btnDownClick(food) {
+    btnDownClick(food, index) {
       if(food.count > 0) {
-        console.log(food.count--);
+        food.count--;
+        this.orderFoodList[index].count = food.count;
+        console.log(this.orderFoodList[index].count);
         this.setOrder();
       }
     },presentActionSheet() {
