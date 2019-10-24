@@ -4,7 +4,7 @@
       <div class="icon"></div>
       <ion-toolbar color="warning" class="toolbar">
         <ion-title></ion-title>
-        <ion-buttons slot="primary" @click="go('/login')" class="button">         
+        <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
           <ion-icon slot="icon-only" name="settings"></ion-icon>
         </ion-buttons>
         
