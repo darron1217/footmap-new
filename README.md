@@ -10,7 +10,7 @@
 
 이러한 소비자와 공급자의 고민을 해결하기 위해 웹 애플리케이션 **푸트맵**을 만들었습니다.
 
-### 프로젝트 
+### 프로젝트 미리 보기
 
 <img src="https://github.com/darron1217/footmap-new/blob/master/resources/screenshot1_home.gif?raw=true">
 
