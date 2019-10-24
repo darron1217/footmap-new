@@ -165,7 +165,7 @@ export default {
             position: position.latlng,
             content: leftContent+position.content+rightContent,
             yAnchor: 2.5,
-            xAnchor: 0.53
+            xAnchor: 0.535
           });
 
 
@@ -257,9 +257,9 @@ export default {
   }
   .icon {position: absolute; z-index: 2; top:0%; left:0%; width: 100%; height: 100%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
-  .label * {display: inline-block;vertical-align: top; background:}
+  .label * {display: inline-block;vertical-align: top; }
   .label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
-  .label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+  .label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 14px;line-height: 24px;}
   .label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
   .header-ios ion-toolbar.toolbar:last-child{
     --border-width:0px;
