@@ -3,9 +3,12 @@
     <ion-header class="header">
       <ion-row class="icon"></ion-row>
       <ion-toolbar color="warning" class="toolbar">
+        <ion-buttons slot="secondary" @click="go('/login')" class="button">         
+          <ion-icon slot="icon-only" name="person" style="font-size:40px"></ion-icon>
+        </ion-buttons>
         <ion-title></ion-title>
         <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
-          <ion-icon slot="icon-only" name="settings"></ion-icon>
+          <ion-icon slot="icon-only" name="settings" style="font-size:40px"></ion-icon>
         </ion-buttons>
         
       </ion-toolbar>
