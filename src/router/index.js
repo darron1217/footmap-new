@@ -31,6 +31,11 @@ const routes = [
     name: 'adminOrder',
     component: () => import('../views/AdminOrder.vue'),
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginView.vue'),
+  },
 ]
 
 const router = new IonicVueRouter({
