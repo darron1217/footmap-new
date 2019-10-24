@@ -38,26 +38,25 @@
             <ion-row >
               <ion-col size=4>
                 <ion-button @click=presentActionSheet>
-                  <ion-icon name="call"></ion-icon>전화
-                  
+                  <ion-icon class="iconInInfoBtn" name="call"></ion-icon>전화
                 </ion-button>
                 
               </ion-col>
               <ion-col size=4>
                 <ion-button class="likeBtn" @click=likeBtnClick>
-                  <ion-icon  class="likeIcon" name="heart-empty"></ion-icon>찜
+                  <ion-icon  class="likeIcon iconInInfoBtn" name="heart-empty"></ion-icon>찜
                 </ion-button>
               </ion-col>
               <ion-col size=4>
                 <ion-button>
-                  <ion-icon name="share"></ion-icon>공유
+                  <ion-icon class="iconInInfoBtn" name="share"></ion-icon>공유
                 </ion-button>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size=12>
                 <ion-button  @click="payConfirm">
-                  <ion-icon  name="card"></ion-icon>  결제하기
+                  <ion-icon class="iconInInfoBtn" name="card"></ion-icon>  결제하기
                 </ion-button>
                 
               </ion-col>
@@ -389,13 +388,14 @@ export default {
   }
   .infoBtnGroup ion-button {
     --background: #ffffff;
-    --border-color: #afafaf;
+    --border-color: #fae3e3eb;
     --border-style: solid;
     --border-width: 1px;
     --color: #3f3f3f;
     --background-activated: #dddddd;
     --color-activated: #ffffff;
     width:100%;
+    position: relative;
   }
   .menuGridBtn ion-button {
     --background: #ffffff;
@@ -446,7 +446,7 @@ export default {
     --padding-end: 0px;
   }
   ion-card-header {
-     border-bottom: 1px solid #bbbbbb;
+     border-bottom: 1px solid #f58ccd;
      padding-left: 0px;
      padding-right: 0px;
      margin-left: 20px;
@@ -482,5 +482,10 @@ export default {
     --color: #3f3f3f;
     --background-activated: #dddddd;
     --color-activated: #ffffff;
+  }
+  .iconInInfoBtn {
+    position: relative;
+    top: 1px;
+    left: -2px;
   }
 </style>
