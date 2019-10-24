@@ -1,15 +1,15 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar color="warning">
+      <ion-toolbar color="warning" class="toolbar">
+        <ion-row class="icon"></ion-row>
         <ion-buttons slot="start">
           <ion-back-button text="뒤로"></ion-back-button>
         </ion-buttons>
-        <ion-title>푸드트럭 정보</ion-title>
-        <ion-buttons slot="primary" style="padding-left: 10px;">
-          <ion-button @click="deleteTruck" v-show="truck.id">삭제</ion-button>
+        <ion-buttons slot="end">
+          <ion-button @click="deleteTruck" v-show="truck.id !== undefined">삭제</ion-button>
         </ion-buttons>
-      </ion-toolbar>
+    </ion-toolbar>
     </ion-header>
     <ion-content>
       <form v-on:submit.prevent="processForm">
@@ -236,3 +236,8 @@ export default {
   }
 }
 </script>
+
+<style>
+.icon {position: absolute; z-index: 2; top:0%; left:0%; width: 100%; height: 100%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
+  .toolbar {position: relative; z-index: 1;}
+</style>
