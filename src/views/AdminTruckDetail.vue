@@ -238,6 +238,9 @@ export default {
 </script>
 
 <style>
+:root {
+  --ion-color-warning-shade: #d33939;
+}
 .icon {position: absolute; z-index: 2; top:0%; left:0%; width: 100%; height: 100%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
 </style>

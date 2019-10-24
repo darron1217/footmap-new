@@ -1,11 +1,13 @@
 # 푸트맵 프로젝트
 
 ## 프로젝트 소개
-```
-간단하게 요깃거리를 찾다가 푸드트럭을 발견했지만 매장에서 파는 메뉴와 가격을 알기 힘들었던 소비자들, 메뉴를 주문하고 싶지만 줄이 너무 길어 대기 시간이 감당이 되지 않는 소비자들, 푸드트럭 판매장소가 정해져있지 않아 이동할 때 마다 홍보를 하고 싶지만 마땅한 플랫폼을 찾기 힘들었던 공급자들.
+
+간단하게 요깃거리를 찾다가 푸드트럭을 발견했지만 매장에서 파는 메뉴와 가격을 알기 힘들었던 소비자들<br>
+메뉴를 주문하고 싶지만 줄이 너무 길어 대기 시간이 감당이 되지 않는 소비자들<br>
+푸드트럭 판매장소가 정해져있지 않아 이동할 때 마다 홍보를 하고 싶지만 마땅한 플랫폼을 찾기 힘들었던 공급자들.<br>
 
 소비자와 공급자의 고민을 해결하기 위한 웹 애플리케이션을 만드는 것입니다.
-```
+
 ## 목차
 
 - [컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#컴퓨터-구성--필수-조건-안내-prerequisites)
@@ -97,11 +99,3 @@ The Footmap is open-source software licensed under the MIT license.
 ## 업데이트 정보 (Change Log)
 
 [CHANGELOG.md](https://github.com/darron1217/footmap-new/blob/master/CHANGELOG.md)
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
