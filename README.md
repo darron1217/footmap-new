@@ -1,5 +1,10 @@
 # 푸트맵 프로젝트
 
+## 프로젝트 소개
+```
+푸드트럭을 찾고 싶어하는 소비자의 니즈와 자신의 푸드트럭을 홍보하고
+싶어하는 공급자의 니즈를 충족하기 위한 프로젝트
+```
 ## 목차
 
 - [컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#컴퓨터-구성--필수-조건-안내-prerequisites)
@@ -66,13 +71,13 @@ The Footmap is open-source software licensed under the MIT license.
 
 ## 배포자 및 개발자의 연락처 정보 (Contact Information)
 
-- Kang Chan (blizzard1107@gmail.com)
-- Lee Jong A (whddk4415@gmail.com)
-- Darron Park (darron1217@gmail.com)
+- Team Name: Food Finder
+  - 공군 중위 강 찬   (blizzard1107@gmail.com)
+  - 육군 상병 이 종아 (whddk4415@gmail.com)
+  - 육군 상병 박 관영 (darron1217@gmail.com)
 
 ## 알려진 버그 (Known Issues)
 
-- 화면을 이동시 일시적으로 맵이 1/8만 보이는 현상
 - 
 
 ## 문제 발생에 대한 해결책 (Troubleshooting)
