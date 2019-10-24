@@ -36,6 +36,7 @@
 
 <script>
 import axios from 'axios'
+import APIURL from '../config.js'
 
 export default {
   data() {
@@ -56,10 +57,10 @@ export default {
       this.$router.push(url);
     },
     getInfos() {
-      axios.get('http://localhost:3000/trucks').then(res => {
+      axios.get(APIURL+'/trucks').then(res => {
         this.truckCount = res.data.length;
       });
-      axios.get('http://localhost:3000/orders').then(res => {
+      axios.get(APIURL+'/orders').then(res => {
         this.orderCount = res.data.length;
       });
     }

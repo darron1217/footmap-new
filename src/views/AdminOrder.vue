@@ -18,7 +18,7 @@
         <ion-item-sliding v-for="order in orders" v-bind:key="order.id" v-show="!order.isReady">
           <ion-item>
             <ion-thumbnail slot="start">
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+              <img :src="order.food.image">
             </ion-thumbnail>
             <ion-label>
               <h2>{{ order.truck.name }}</h2>
@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import APIURL from '../config.js'
 
 export default {
   data() {
@@ -56,12 +57,12 @@ export default {
       this.$router.push(url);
     },
     getOrders() {
-      axios.get('http://localhost:3000/orders?_expand=truck&_expand=food').then(res => {
+      axios.get(APIURL+'/orders?_expand=truck&_expand=food').then(res => {
         this.orders = res.data;
       });
     },
     readyOrder(order) {
-      axios.patch('http://localhost:3000/orders/'+order.id, {isReady:true}).then(() => {
+      axios.patch(APIURL+'/orders/'+order.id, {isReady:true}).then(() => {
         // 목록 갱신
         this.getOrders();
       });
