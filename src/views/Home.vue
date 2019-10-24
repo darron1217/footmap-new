@@ -118,16 +118,28 @@ export default {
 
         this.mapObject = map;
 
-        var positions = [
-          {
-            content: this.trucks[0].name,
-            latlng : new kakao.maps.LatLng(this.trucks[0].lat, this.trucks[0].lng)
-          },
-          {
-            content: this.trucks[1].name,
-            latlng : new kakao.maps.LatLng(this.trucks[1].lat, this.trucks[1].lng)
+        var positions = [];
+        for(let i=0; i<this.trucks.length; i++){
+            var posi = {
+              content: this.trucks[i].name,
+              latlng: new kakao.maps.LatLng(this.trucks[i].lat, this.trucks[i].lng)
+            }
+            positions[i] = posi;
           }
-        ];
+          // positions[i].content = this.trucks[i].name;
+          // positions[i].latlng = new kakao.maps.LatLng(this.trucks[i].lat, this.trucks[i].lng);
+        
+
+        // var positions = [
+        //   {
+        //     content: this.trucks[0].name,
+        //     latlng : new kakao.maps.LatLng(this.trucks[0].lat, this.trucks[0].lng)
+        //   },
+        //   {
+        //     content: this.trucks[1].name,
+        //     latlng : new kakao.maps.LatLng(this.trucks[1].lat, this.trucks[1].lng)
+        //   }
+        // ];
 
         var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2012/img/marker_p.png"
 
