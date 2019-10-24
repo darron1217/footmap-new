@@ -3,9 +3,6 @@
     <ion-header>
       <ion-toolbar color="warning" class="toolbar">
         <ion-row class="icon"></ion-row>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
         <ion-title>푸드트럭 관리</ion-title>
         <ion-buttons slot="end">
           <ion-button @click="go('/')">

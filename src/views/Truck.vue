@@ -3,9 +3,6 @@
     <ion-header>
       <ion-toolbar color="warning" class="toolbar">
         <ion-row class="icon"></ion-row>
-        <ion-buttons slot="start">
-         <ion-menu-button></ion-menu-button>
-        </ion-buttons>
         <ion-buttons slot="end">
           <ion-button @click="go('/')">
           <ion-icon slot="icon-only" name="home" style="font-size:40px"></ion-icon>
@@ -40,6 +37,7 @@ import axios from 'axios'
 import APIURL from '../config.js'
 
 export default {
+  props: ['id'],
   data() {
     return {
       orders: [],
@@ -50,6 +48,12 @@ export default {
       // Code that will run only after the
       // entire view has been rendered
       this.getOrders();
+
+      this.$ionic.toastController.create({
+        color: 'dark',
+        duration: 2000,
+        message: '가맹점 로그인 되었습니다'
+      }).then(t => t.present());
     })
   },
   methods: {
@@ -57,7 +61,8 @@ export default {
       this.$router.push(url);
     },
     getOrders() {
-      axios.get(APIURL+'/orders?_expand=truck&_expand=food').then(res => {
+      axios.get(APIURL+'/orders?_expand=truck&_expand=food&truckId='+this.id).then(res => {
+        console.log(res);
         this.orders = res.data;
       });
     },

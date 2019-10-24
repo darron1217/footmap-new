@@ -13,7 +13,7 @@
     <ion-content>
       <ion-card>
         <ion-card-header style=" padding-bottom: 0px">
-            <ion-card-title  style="text-align:center;">Login</ion-card-title>
+            <ion-card-title  style="text-align:center;">가맹점 로그인</ion-card-title>
         </ion-card-header>
 
         <ion-card-content class="loginCard">
@@ -31,7 +31,7 @@
                             </ion-item>
                         </ion-col>
                         <ion-col size=4 align-self-center style="height:100px">
-                            <ion-button class="btnBorder" @click="go('/')">Login</ion-button>
+                            <ion-button class="btnBorder" @click="go('/truck/1')">Login</ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
