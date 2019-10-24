@@ -62,6 +62,7 @@
 <script>
 import axios from 'axios'
 import Vue from 'vue'
+import APIURL from '../config.js'
 
 export default {
   props: ['id'],
@@ -87,7 +88,7 @@ export default {
       // 로딩 띄우면서 정보가져오기
       this.$ionic.loadingController.create({message: 'Loading'}).then(loading => {
         loading.present();
-        axios.get(`http://localhost:3000/trucks/${id}?_embed=foods`).then(res => {
+        axios.get(`${APIURL}/trucks/${id}?_embed=foods`).then(res => {
           this.truck = res.data;
           loading.dismiss();
           console.log(this.truck);
@@ -123,15 +124,15 @@ export default {
             // 새로등록할때를 대비해 truckId를 계속 넣어주도록 구현
             food.truckId = truck.id;
             if(food.deleted) {
-              await axios.delete(`http://localhost:3000/foods/${food.id}`);
+              await axios.delete(`${APIURL}/foods/${food.id}`);
             }
             // id가 있으면 수정, 없으면 입력
             else if(food.id === undefined)
-              await axios.post(`http://localhost:3000/foods`, food).then(res => {
+              await axios.post(`${APIURL}/foods`, food).then(res => {
                 foods[i] = res.data;
               });
             else 
-              await axios.put(`http://localhost:3000/foods/${food.id}`, food);
+              await axios.put(`${APIURL}/foods/${food.id}`, food);
           });
 
           // 저장후엔 뒤로가기
@@ -140,10 +141,10 @@ export default {
         
         // 등록 또는 수정
         if(this.id == 'new') {
-          axios.post(`http://localhost:3000/trucks`, this.truck).then(callback);
+          axios.post(`${APIURL}/trucks`, this.truck).then(callback);
         }
         else {
-          axios.put(`http://localhost:3000/trucks/${this.id}`, this.truck).then(callback);
+          axios.put(`${APIURL}/trucks/${this.id}`, this.truck).then(callback);
         }
 
       });
@@ -220,7 +221,7 @@ export default {
       }).then(t => t.present());
     },
     async deleteTruck() {
-      await axios.delete(`http://localhost:3000/trucks/${this.id}`);
+      await axios.delete(`${APIURL}/trucks/${this.id}`);
       // 성공하면 알림
       this.$ionic.alertController.create({
         header: '삭제되었습니다',

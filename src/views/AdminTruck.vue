@@ -17,7 +17,7 @@
       <ion-list>
         <ion-item button v-for="truck in trucks" v-bind:key="truck.id" @click="go('/admintruck/'+truck.id)">
           <ion-thumbnail slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            <img :src="truck.image">
           </ion-thumbnail>
           <ion-label>
             <h2>{{ truck.name }}</h2>
@@ -35,6 +35,7 @@
 
 <script>
 import axios from 'axios'
+import APIURL from '../config.js'
 
 export default {
   data() {
@@ -54,7 +55,7 @@ export default {
       this.$router.push(url);
     },
     getTrucks() {
-      axios.get('http://localhost:3000/trucks').then(res => {
+      axios.get(APIURL+'/trucks').then(res => {
         this.trucks = res.data;
       });
     },
