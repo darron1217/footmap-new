@@ -1,14 +1,14 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar color="warning">
-        <ion-title>로그인</ion-title>
+        <ion-toolbar color="warning" class="toolbar">
+        <ion-row class="icon"></ion-row>
         <ion-buttons slot="end">
           <ion-button @click="go('/')">
-            <ion-icon slot="icon-only" name="home"></ion-icon>
+            <ion-icon slot="icon-only" name="home" style="font-size:40px;"></ion-icon>
           </ion-button>
         </ion-buttons>
-      </ion-toolbar>
+    </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-card>
