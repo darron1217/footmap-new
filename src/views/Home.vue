@@ -3,14 +3,15 @@
     <ion-header class="header">
       <ion-toolbar color="warning" class="toolbar">
         <ion-title>푸트맵</ion-title>
-        <ion-buttons slot="primary">
-          <ion-button @click="showLoginPrompt" class="button">
-            <ion-icon slot="icon-only" name="settings"></ion-icon>
-          </ion-button>
+        <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
         </ion-buttons>
+        
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content style="position: relative;">
+      <ion-backdrop visible=true style="opacity: 0.3;"></ion-backdrop>
+      <ion-card style="position: absolute; z-index: 1; opacity: 1; left;50%; transform:translateX(-50%);">asalskdfnalsdfalsflasndflansldfalsfnkdf</ion-card>
       <ion-searchbar class="searchBackground"  @search="searchLocation"></ion-searchbar>
       <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="posiButton">
         <ion-fab-button color="warning" @click="setCurrentLocation">
@@ -32,6 +33,7 @@
       style="position: relative; width:100%;height:100%;z-index:1;">
     </vue-daum-map>
     </ion-content>
+    
   </ion-page>
   
 </template>
@@ -239,19 +241,23 @@ export default {
           ],
         })
         .then(a => a.present());
+    },go(url) {
+      this.$router.push(url);
     },
   }
 }
 </script>
 <style>
-  
-.label * {display: inline-block;vertical-align: top;}
-.label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
-.label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
-.label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
-.header-ios ion-toolbar.toolbar:last-child{
-  --border-width:0px;
-}
-.searchBackground {background: #ffce00; --background: white; border-color: #ffcc00;}
-.posiButton {margin-bottom: 13%; margin-left: 2%}
+  :root {
+    --ion-color-warning: #f86f70;
+  }
+  .label * {display: inline-block;vertical-align: top; background:}
+  .label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
+  .label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+  .label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
+  .header-ios ion-toolbar.toolbar:last-child{
+    --border-width:0px;
+  }
+  .searchBackground {background: #f86f70; --background: white; border-color: #f86f70;}
+  .posiButton {margin-bottom: 13%; margin-left: 2%}
 </style>
