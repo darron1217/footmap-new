@@ -9,7 +9,7 @@
 #### - Improve TruckModal Review & Menu UI<br>- Apply Json-server<br>- Refactoring Code<br>- Dataset bug fix
 
 ### 19.10.24
-#### - Kakao Map bug fix<br>- Add Login View<br>- Improve Header UI<br>- Implement Food & Truck Data Input Function<br>- Change UI Color<br>- Improve Truck Modal Card & Buttons UI<br>- Change Data Structure<br>- Fixed to work in mobile phone environment.
+#### - Kakao Map bug fix<br>- Add Login View<br>- Improve Header UI<br>- Implement Food & Truck Data Input Function<br>- Change UI Color<br>- Improve Card & Buttons UI in Truck Modal<br>- Change Data Structure<br>- Fixed to work in mobile phone environment.
 
 <!-- 
 ### Removed
