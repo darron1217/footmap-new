@@ -24,7 +24,7 @@
             </ion-label>
           </ion-item>
           <ion-item-options side="end">
-            <ion-item-option color="primary" @click="readyOrder(order)">준비완료</ion-item-option>
+            <ion-item-option  color="warning" @click="readyOrder(order)">준비완료</ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
@@ -93,6 +93,9 @@ export default {
 
 
 <style>
+:root {
+  --ion-color-warning-shade: #d33939;
+}
 .icon {position: absolute; z-index: 2; top:0%; left:0%; width: 100%; height: 100%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
 </style>
