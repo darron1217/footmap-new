@@ -53,19 +53,23 @@
                 </ion-button>
               </ion-col>
             </ion-row>
-            <ion-row>
+            <!-- <ion-row>
               <ion-col size=12>
                 <ion-button  @click="payConfirm" style="color:#232b2b">
                   <ion-icon class="iconInInfoBtn" name="card"></ion-icon>  결제하기
                 </ion-button>
                 
               </ion-col>
-            </ion-row>
+            </ion-row> -->
           </ion-grid>
         </ion-item-group>
       </ion-card>
       <!-- Food Truck Infomation View -->
-
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="payFabBtn" @click=payConfirm>
+          <ion-icon name="card"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
       <!-- Food List View  -->
       <ion-grid>
         <ion-row class="menuGridBtn" style="text-align: center;">
@@ -496,5 +500,9 @@ export default {
     position: relative;
     top: 1px;
     left: -2px;
+  }
+  .payFabBtn {
+    --background: #f86f70;
+    --background-activated: #d33939;
   }
 </style>
