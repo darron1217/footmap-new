@@ -11,7 +11,7 @@
       </ion-toolbar>
       <ion-searchbar class="searchBackground"  @search="searchLocation"></ion-searchbar>
     </ion-header>
-    <ion-content style="position: relative;">
+    <ion-content>
       <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="posiButton">
         <ion-fab-button color="danger" @click="setCurrentLocation" class="currentButton">
           <ion-icon name="locate"></ion-icon>
@@ -170,7 +170,7 @@ export default {
           // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
           kakao.maps.event.addListener(marker, 'click', () => this.openModal(truckid));
           // kakao.maps.event.addListener(marker, 'click', () => this.openModal(truckid));
-        
+          map.relayout();
         });
 
         
@@ -250,6 +250,7 @@ export default {
   :root {
     --ion-color-warning: #f86f70;
     --background-activated: #f86f70;
+    --ion-color-danger: #f86f70;
   }
   .icon {position: absolute; z-index: 2; left:25%; width: 50%; height: 53%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
@@ -261,5 +262,5 @@ export default {
     --border-width:0px;
   }
   .searchBackground {background: #f86f70; --background: white; border-color: #f86f70;}
-  .posiButton {margin-bottom: 28%; margin-left: 2%}
+  .posiButton {position: absolute; z-index: 3; left: 4%; top: 4%}
 </style>
