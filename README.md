@@ -23,8 +23,8 @@
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
   * Node (v10.16.3)
-  * vue-cli
-  * json-server (v0.15.1)
+  * NPM (v6.9.0)
+  * Json-server (v0.15.1)
 
 ## 설치 안내 (Installation Process)
 
@@ -49,6 +49,17 @@ npm run api
 ```
 npm run serve
 ```
+
+### 사이트 접속
+```
+Web: http://localhost:8080
+DB : http://localhost:3000/${TableName}
+```
+| TableName | Meaning |
+|-----------|:-------:|
+| `trucks`  | 현재 등록된 푸드트럭들의 테이블          |
+| `orders`  | 주문내역을 저장한 테이블                |
+| `foods`   | 푸드트럭마다 저장된 모든 음식들의 테이블 |
 
 ## 파일 정보 및 목록 (File Manifest)
 
@@ -86,7 +97,7 @@ The Footmap is open-source software licensed under the MIT license.
 
 ## 알려진 버그 (Known Issues)
 
--  
+- None
 
 ## 문제 발생에 대한 해결책 (Troubleshooting)
 
