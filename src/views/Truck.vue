@@ -55,6 +55,21 @@ export default {
         message: '가맹점 로그인 되었습니다'
       }).then(t => t.present());
     })
+
+    // Pusher등록
+    var channel = this.$pusher.subscribe('orders');
+    channel.bind('truck.'+this.id, (data) => {
+      this.$ionic.toastController.create({
+        color: 'dark',
+        duration: 2000,
+        message: '주문이 추가되었습니다'
+      }).then(t => {
+        t.present();
+        // 목록 갱신
+        this.getOrders();
+      });
+      console.log('orderd!', data);
+    });
   },
   methods: {
     go(url) {

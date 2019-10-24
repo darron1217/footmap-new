@@ -61,6 +61,19 @@ export default {
       trucks:[],
       searchText:'',
     }),
+    mounted() {
+      // Pusher등록
+      var channel = this.$pusher.subscribe('orders');
+      channel.bind('user', (data) => {
+        this.$ionic.toastController.create({
+          color: 'dark',
+          duration: 2000,
+          message: '주문이 준비되었습니다'
+        }).then(t => {
+          t.present();
+        });
+      });
+    },
     methods: {
       async searchLocation(e){
         await axios.get('http://dapi.kakao.com/v2/local/search/address.json',
