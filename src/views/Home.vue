@@ -142,7 +142,7 @@ export default {
         //   }
         // ];
 
-        var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2012/img/marker_p.png"
+        var imageSrc = "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
 
         positions.map((position, i) => {
           var imageSize = new kakao.maps.Size(33,35);
@@ -162,7 +162,7 @@ export default {
             position: position.latlng,
             content: leftContent+position.content+rightContent,
             yAnchor: 2.5,
-            xAnchor: 0.57
+            xAnchor: 0.53
           });
 
 
