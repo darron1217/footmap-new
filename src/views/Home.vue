@@ -5,7 +5,7 @@
       <ion-toolbar color="warning" class="toolbar">
         <ion-row class="icon"></ion-row>
         <ion-buttons slot="secondary" @click="go('/login')" class="button">         
-          <ion-icon slot="icon-only" name="person" style="font-size:40px"></ion-icon>
+          <ion-icon slot="icon-only" name="ios-contacts" style="font-size:40px"></ion-icon>
         </ion-buttons>
         <ion-title></ion-title>
         <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
@@ -229,7 +229,7 @@ export default {
                     message: '관리자페이지로 이동합니다'
                   }).then(t => t.present());
                   // 관리자페이지로 이동
-                  this.$router.push('/admin');
+                  this.$router.push('/admintruck');
                 }
                 else {
                   this.$ionic.toastController.create({
