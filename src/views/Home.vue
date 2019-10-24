@@ -13,7 +13,7 @@
     </ion-header>
     <ion-content style="position: relative;">
       <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="posiButton">
-        <ion-fab-button color="warning" @click="setCurrentLocation">
+        <ion-fab-button color="danger" @click="setCurrentLocation" class="currentButton">
           <ion-icon name="locate"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -249,6 +249,7 @@ export default {
 <style>
   :root {
     --ion-color-warning: #f86f70;
+    --background-activated: #f86f70;
   }
   .icon {position: absolute; z-index: 2; left:25%; width: 50%; height: 53%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
