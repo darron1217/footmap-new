@@ -46,3 +46,10 @@ export default {
   },
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua|Noto+Sans+KR&display=swap');
+#app{
+   font-family: 'Do Hyeon', 'Jua', 'Noto Sans KR', sans-serif;
+ }
+</style>

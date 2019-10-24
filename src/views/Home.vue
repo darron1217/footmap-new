@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-header class="header">
-      <div class="icon"></div>
+      <ion-row class="icon"></ion-row>
       <ion-toolbar color="warning" class="toolbar">
         <ion-title></ion-title>
         <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
@@ -99,7 +99,7 @@ export default {
           var moveLoca = new kakao.maps.LatLng(37.4495528, 126.7867041);
           map.setCenter(moveLoca);
         }, {enableHighAccuracy: true,
-        timeout: 5000});
+        timeout: 3000});
         }else{
           alert("GPS를 지원하지 않습니다");
         }
@@ -263,4 +263,6 @@ export default {
   }
   .searchBackground {background: #f86f70; --background: white; border-color: #f86f70;}
   .posiButton {position: absolute; z-index: 3; left: 4%; top: 4%}
+
+
 </style>
