@@ -16,16 +16,16 @@
         <ion-list>
           <ion-list-header>기본정보</ion-list-header>
           <ion-item>
-            <ion-label position="floating">트럭이름 <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="name" v-bind:value="truck.name" @ionInput="truck.name = $event.target.value;"></ion-input>
+            <ion-label position="floating" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif; font-size:24px;">트럭이름 <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="name" v-bind:value="truck.name" @ionInput="truck.name = $event.target.value;" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">전화번호 <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" name="phone" v-bind:value="truck.phone" @ionInput="truck.phone = $event.target.value;"></ion-input>
+            <ion-label position="floating" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif; font-size:24px;">전화번호 <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="phone" v-bind:value="truck.phone" @ionInput="truck.phone = $event.target.value;" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">소개</ion-label>
-            <ion-textarea name="description" v-bind:value="truck.description" @ionInput="truck.description = $event.target.value;"></ion-textarea>
+            <ion-label position="floating" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif; font-size:24px;">소개</ion-label>
+            <ion-textarea name="description" v-bind:value="truck.description" @ionInput="truck.description = $event.target.value;" style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;"></ion-textarea>
           </ion-item>
         </ion-list>
 

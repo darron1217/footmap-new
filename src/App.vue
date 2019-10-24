@@ -11,15 +11,15 @@
           <ion-list>
             <ion-item button @click="go('/admin')">
               <ion-icon name="home" slot="start"></ion-icon>
-              <ion-label>관리홈</ion-label>
+              <ion-label style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;">관리홈</ion-label>
             </ion-item>
             <ion-item button @click="go('/admintruck')">
               <ion-icon name="pin" slot="start"></ion-icon>
-              <ion-label>푸드트럭관리</ion-label>
+              <ion-label style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;">푸드트럭관리</ion-label>
             </ion-item>
             <ion-item button @click="go('/adminorder')">
               <ion-icon name="list-box" slot="start"></ion-icon>
-              <ion-label>주문관리</ion-label>
+              <ion-label style="font-family: 'Jua', 'Do Hyeon', 'Noto Sans KR', sans-serif;">주문관리</ion-label>
             </ion-item>
           </ion-list>
         </ion-content>
@@ -46,10 +46,3 @@ export default {
   },
 }
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua|Noto+Sans+KR&display=swap');
-#app{
-   font-family: 'Do Hyeon', 'Jua', 'Noto Sans KR', sans-serif;
- }
-</style>

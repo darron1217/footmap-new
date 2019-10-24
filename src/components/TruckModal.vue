@@ -6,14 +6,14 @@
       <!-- Food Truck Infomation View -->
       <ion-card>
         <ion-card-header>
-          <ion-card-title color="medium" style=" text-align : center; padding-bottom: 15px;"> 
+          <ion-card-title color="medium" style=" text-align : center; padding-bottom: 15px; color:#3b444b"> 
             {{ truck.name }}
           </ion-card-title>
           <img class="storeImg" :src="truck.image">
           
           
           <ion-card-subtitle>
-            <span class="gradeTxt"> 
+            <span class="gradeTxt" style="color:#3b444b"> 
               <ion-icon class="icStar" name="star-outline"></ion-icon>
               <ion-icon class="icStar" name="star-outline"></ion-icon>
               <ion-icon class="icStar" name="star-outline"></ion-icon>
@@ -22,40 +22,40 @@
               {{ truck.grade.toFixed(1) }}
             </span>
           </ion-card-subtitle>
-          <ion-card-subtitle>
+          <ion-card-subtitle style="color:#3b444b">
             영업시간 : xx ~ xx
           </ion-card-subtitle>
-          <ion-card-subtitle>
+          <ion-card-subtitle style="color:#3b444b">
             최소 대기시간: xx분
           </ion-card-subtitle>
         </ion-card-header>
 
-        <ion-card-content>
+        <ion-card-content style="color:#232b2b">
           {{ truck.description }}
         </ion-card-content>
         <ion-item-group class="infoBtnGroup">
           <ion-grid>
             <ion-row >
               <ion-col size=4>
-                <ion-button @click=presentActionSheet>
+                <ion-button @click=presentActionSheet style="color:#232b2b">
                   <ion-icon class="iconInInfoBtn" name="call"></ion-icon>전화
                 </ion-button>
                 
               </ion-col>
               <ion-col size=4>
-                <ion-button class="likeBtn" @click=likeBtnClick>
+                <ion-button class="likeBtn" @click=likeBtnClick style="color:#232b2b">
                   <ion-icon  class="likeIcon iconInInfoBtn" name="heart-empty"></ion-icon>찜
                 </ion-button>
               </ion-col>
               <ion-col size=4>
-                <ion-button>
+                <ion-button style="color:#232b2b">
                   <ion-icon class="iconInInfoBtn" name="share"></ion-icon>공유
                 </ion-button>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size=12>
-                <ion-button  @click="payConfirm">
+                <ion-button  @click="payConfirm" style="color:#232b2b">
                   <ion-icon class="iconInInfoBtn" name="card"></ion-icon>  결제하기
                 </ion-button>
                 
@@ -367,6 +367,9 @@ export default {
     height: 100%;
     max-height: 105px;
   }
+  ion-item{
+    --border-color: #f58ccd;
+  }
 
   ion-row {
     --width: 100%;
@@ -402,6 +405,7 @@ export default {
     --color: #000000;
     --background-activated: #ffffff;
     --color-activated: #000000;
+    --border-color: #fae3e3eb!important;
     width:100%;
   }
   .listMenuSelected {

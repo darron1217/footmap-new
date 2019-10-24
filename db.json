@@ -1,192 +1,194 @@
 {
-    "trucks": [{
-            "id": 0,
-            "name": "쉬림프 박스",
-            "phone": "010-1234-5678",
-            "lat": 37.4505673,
-            "lng": 126.7887031999999,
-            "grade": 3.5,
-            "image": "https://img.siksinhot.com/place/1462755348333417.jpg?w=540&h=436&c=Y",
-            "description": "탱글탱글한 새우로 채우는 꽉 찬 한끼 식사"
-        },
-        {
-            "id": 1,
-            "name": "순이네 강정트럭",
-            "phone": "010-1234-5655",
-            "lat": 37.4465673,
-            "lng": 126.7857031999999,
-            "grade": 4.7,
-            "image": "https://mblogthumb-phinf.pstatic.net/MjAxODA1MjJfMTQw/MDAxNTI2OTkwMDYzMjQ5.AVZZB4cfT7_wtpxHDU4WdxYsqog94eEu1qe8NiOQfoUg.98RnXFIQ42Gh60ri32kozlvUbAzy-4mqbrSJ7wKpVaAg.PNG.ghdtjsrms/1503hoDSC_5028anallog.png?type=w800",
-            "description": "누구나 좋아하는 국민 간식 닭강정!"
-        },
-        {
-            "id": 2,
-            "name": "청춘 맛차",
-            "phone": "010-1234-5655",
-            "lat": 37.516,
-            "lng": 127.045,
-            "grade": 4.2,
-            "image": "http://img.tripnbuy.com/photo/instagram_standard_15625394_405105943165971_5912548676567302144_n.jpg",
-            "description": "흑돼지를 맛잇게 요리하는 두 남자의 손 맛"
-        },
-        {
-            "id": 3,
-            "name": "버거 트럭",
-            "phone": "010-1234-5655",
-            "lat": 37.519,
-            "lng": 127.050,
-            "grade": 4.5,
-            "image": "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/G02/image/NmHOSEzsxRXdOH4b_qW_x_fHSkc.jpg",
-            "description": "나는 버거를 좋아하고 나는 그런 너를 좋아하고"
-
-        },
-        {
-            "id": 4,
-            "name": "제니 트럭",
-            "phone": "010-1234-5655",
-            "lat": 37.447,
-            "lng": 126.7892031999999,
-            "grade": 4.0,
-            "image": "http://mblogthumb3.phinf.naver.net/20160611_262/soal86_1465573684843B4pHJ_JPEG/NaverBlog_20160611_004804_09.jpg?type=w2",
-            "description": "고기 is 뭔들! 고기로 채우는 맛있는 한끼"
-        }
-    ],
-    "foods": [{
-            "id": 0,
-            "truckId": 0,
-            "name": "레몬 갈릭 새우버터구이",
-            "price": 9000,
-            "image": "https://instagram.fist1-2.fna.fbcdn.net/vp/8a3b4736727bd55f6d2418a889368f23/5E1F02C2/t51.2885-15/sh0.08/e35/s640x640/21433848_1636984249666381_5119334003010174976_n.jpg?_nc_ht=instagram.fist1-2.fna.fbcdn.net&_nc_cat=101",
-            "description": "탱글탱글한 새우와 레몬 갈릭 소스의 만남"
-        },
-        {
-            "id": 1,
-            "truckId": 0,
-            "name": "핫&스파이시 새우버터구이",
-            "price": 9500,
-            "image": "http://www.edudaily.co.kr/PEG/14804115707877.jpg",
-            "description": "불맛 가득 매콤한 새우버터구이"
-        },
-        {
-            "id": 2,
-            "truckId": 1,
-            "name": "순살 강정(小)",
-            "price": 6000,
-            "image": "https://t1.daumcdn.net/cfile/tistory/2311984B5518114D2E",
-            "description": "매콤 달콤 누구나 좋아하는 강정(小)"
-        },
-        {
-            "id": 3,
-            "truckId": 1,
-            "name": "순살 강정(大)",
-            "price": 11000,
-            "image": "http://cdn.pressian.com/data/photos/cdn/20180207/art_1518530396.jpg",
-            "description": "매콤 달콤 누구나 좋아하는 강정(大)"
-        },
-        {
-            "id": 4,
-            "truckId": 2,
-            "name": "흑돼지 케사디아",
-            "price": 6000,
-            "image": "https://steemitimages.com/DQmXENQqhBVRVVutz93FdXrQ2ojtB9vk7dtksinMzxKSocP/IMG_3857.JPG",
-            "description": "제주 흑돼지로 만든 든든한 한 끼"
-        },
-        {
-            "id": 5,
-            "truckId": 2,
-            "name": "흑돼지 큐브스테이크",
-            "price": 6000,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxNvQLKMT2p4tcIuRdrmcZbLXpdnITP4MM9bwS3Y-eCdm9_tVXhw&s",
-            "description": "먹기 좋은 크기로 잘라진 스테이크와 감자튀김"
-        },
-        {
-            "id": 6,
-            "truckId": 3,
-            "name": "마늘소고기 버거",
-            "price": 6000,
-            "image": "https://mp-seoul-image-production-s3.mangoplate.com/264404/578806_1469773289380_93439?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80",
-            "description": "든든한 호밀패티와 소고기의 만남"
-        },
-        {
-            "id": 7,
-            "truckId": 3,
-            "name": "칠리 치즈 후라이",
-            "price": 4500,
-            "image": "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F27068D3457EA550B01F504",
-            "description": "뜨거운 감자튀김 위 칠리소스와 치즈가 한가득"
-        },
-        {
-            "id": 8,
-            "truckId": 4,
-            "name": "돼지목살 플레이트",
-            "price": 7900,
-            "image": "http://static.hubzum.zumst.com/hubzum/2017/06/26/15/40d3d63e44394005bac74368564f5630.jpg",
-            "description": "돼지 목살과 감자튀김의 환상적인 조화"
-        },
-        {
-            "id": 9,
-            "truckId": 4,
-            "name": "흑돼지 꼬치",
-            "price": 3000,
-            "image": "https://mblogthumb-phinf.pstatic.net/20160606_150/tastydish_1465183924914OpTPk_JPEG/%25EC%25A0%259C%25EB%258B%2588%25ED%258A%25B8%25EB%259F%25AD109.JPG?type=w800",
-            "description": "요즘 꼬치엔 돼지가 대세지!"
-        }
-    ],
-    "orders": [{
-            "id": 1,
-            "truckId": 1,
-            "foodId": 0,
-            "count": 2,
-            "isReady": false
-        },
-        {
-            "truckId": 1,
-            "foodId": 2,
-            "count": 5,
-            "isReady": false,
-            "id": 2
-        },
-        {
-            "truckId": 1,
-            "foodId": 3,
-            "count": 3,
-            "isReady": false,
-            "id": 3
-        },
-        {
-            "truckId": 1,
-            "foodId": 2,
-            "count": 5,
-            "isReady": false,
-            "id": 4
-        },
-        {
-            "truckId": 1,
-            "foodId": 3,
-            "count": 3,
-            "isReady": false,
-            "id": 5
-        },
-        {
-            "truckId": 1,
-            "foodId": 2,
-            "count": 5,
-            "isReady": false,
-            "id": 6
-        },
-        {
-            "truckId": 1,
-            "foodId": 3,
-            "count": 3,
-            "isReady": false,
-            "id": 7
-        },
-        {
-            "truckId": 0,
-            "foodId": 0,
-            "count": 1,
-            "isReady": false,
-            "id": 8
-        }
-    ]
+  "trucks": [
+    {
+      "id": 0,
+      "name": "쉬림프 박스",
+      "phone": "010-1234-5678",
+      "lat": 37.4505673,
+      "lng": 126.7887031999999,
+      "grade": 3.5,
+      "image": "https://img.siksinhot.com/place/1462755348333417.jpg?w=540&h=436&c=Y",
+      "description": "탱글탱글한 새우로 채우는 꽉 찬 한끼 식사"
+    },
+    {
+      "id": 1,
+      "name": "순이네 강정트럭",
+      "phone": "010-1234-5655",
+      "lat": 37.4465673,
+      "lng": 126.7857031999999,
+      "grade": 4.7,
+      "image": "https://mblogthumb-phinf.pstatic.net/MjAxODA1MjJfMTQw/MDAxNTI2OTkwMDYzMjQ5.AVZZB4cfT7_wtpxHDU4WdxYsqog94eEu1qe8NiOQfoUg.98RnXFIQ42Gh60ri32kozlvUbAzy-4mqbrSJ7wKpVaAg.PNG.ghdtjsrms/1503hoDSC_5028anallog.png?type=w800",
+      "description": "누구나 좋아하는 국민 간식 닭강정!"
+    },
+    {
+      "id": 2,
+      "name": "청춘 맛차",
+      "phone": "010-1234-5655",
+      "lat": 37.516,
+      "lng": 127.045,
+      "grade": 4.2,
+      "image": "http://img.tripnbuy.com/photo/instagram_standard_15625394_405105943165971_5912548676567302144_n.jpg",
+      "description": "흑돼지를 맛잇게 요리하는 두 남자의 손 맛"
+    },
+    {
+      "id": 3,
+      "name": "버거 트럭",
+      "phone": "010-1234-5655",
+      "lat": 37.519,
+      "lng": 127.05,
+      "grade": 4.5,
+      "image": "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/G02/image/NmHOSEzsxRXdOH4b_qW_x_fHSkc.jpg",
+      "description": "나는 버거를 좋아하고 나는 그런 너를 좋아하고"
+    },
+    {
+      "id": 4,
+      "name": "제니 트럭",
+      "phone": "010-1234-5655",
+      "lat": 37.447,
+      "lng": 126.7892031999999,
+      "grade": 4,
+      "image": "http://mblogthumb3.phinf.naver.net/20160611_262/soal86_1465573684843B4pHJ_JPEG/NaverBlog_20160611_004804_09.jpg?type=w2",
+      "description": "고기 is 뭔들! 고기로 채우는 맛있는 한끼"
+    }
+  ],
+  "foods": [
+    {
+      "id": 0,
+      "truckId": 0,
+      "name": "레몬 갈릭 새우버터구이",
+      "price": 9000,
+      "image": "https://instagram.fist1-2.fna.fbcdn.net/vp/8a3b4736727bd55f6d2418a889368f23/5E1F02C2/t51.2885-15/sh0.08/e35/s640x640/21433848_1636984249666381_5119334003010174976_n.jpg?_nc_ht=instagram.fist1-2.fna.fbcdn.net&_nc_cat=101",
+      "description": "탱글탱글한 새우와 레몬 갈릭 소스의 만남"
+    },
+    {
+      "id": 1,
+      "truckId": 0,
+      "name": "핫&스파이시 새우버터구이",
+      "price": 9500,
+      "image": "http://www.edudaily.co.kr/PEG/14804115707877.jpg",
+      "description": "불맛 가득 매콤한 새우버터구이"
+    },
+    {
+      "id": 2,
+      "truckId": 1,
+      "name": "순살 강정(小)",
+      "price": 6000,
+      "image": "https://t1.daumcdn.net/cfile/tistory/2311984B5518114D2E",
+      "description": "매콤 달콤 누구나 좋아하는 강정(小)"
+    },
+    {
+      "id": 3,
+      "truckId": 1,
+      "name": "순살 강정(大)",
+      "price": 11000,
+      "image": "http://cdn.pressian.com/data/photos/cdn/20180207/art_1518530396.jpg",
+      "description": "매콤 달콤 누구나 좋아하는 강정(大)"
+    },
+    {
+      "id": 4,
+      "truckId": 2,
+      "name": "흑돼지 케사디아",
+      "price": 6000,
+      "image": "https://steemitimages.com/DQmXENQqhBVRVVutz93FdXrQ2ojtB9vk7dtksinMzxKSocP/IMG_3857.JPG",
+      "description": "제주 흑돼지로 만든 든든한 한 끼"
+    },
+    {
+      "id": 5,
+      "truckId": 2,
+      "name": "흑돼지 큐브스테이크",
+      "price": 6000,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxNvQLKMT2p4tcIuRdrmcZbLXpdnITP4MM9bwS3Y-eCdm9_tVXhw&s",
+      "description": "먹기 좋은 크기로 잘라진 스테이크와 감자튀김"
+    },
+    {
+      "id": 6,
+      "truckId": 3,
+      "name": "마늘소고기 버거",
+      "price": 6000,
+      "image": "https://mp-seoul-image-production-s3.mangoplate.com/264404/578806_1469773289380_93439?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80",
+      "description": "든든한 호밀패티와 소고기의 만남"
+    },
+    {
+      "id": 7,
+      "truckId": 3,
+      "name": "칠리 치즈 후라이",
+      "price": 4500,
+      "image": "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F27068D3457EA550B01F504",
+      "description": "뜨거운 감자튀김 위 칠리소스와 치즈가 한가득"
+    },
+    {
+      "id": 8,
+      "truckId": 4,
+      "name": "돼지목살 플레이트",
+      "price": 7900,
+      "image": "http://static.hubzum.zumst.com/hubzum/2017/06/26/15/40d3d63e44394005bac74368564f5630.jpg",
+      "description": "돼지 목살과 감자튀김의 환상적인 조화"
+    },
+    {
+      "id": 9,
+      "truckId": 4,
+      "name": "흑돼지 꼬치",
+      "price": 3000,
+      "image": "https://mblogthumb-phinf.pstatic.net/20160606_150/tastydish_1465183924914OpTPk_JPEG/%25EC%25A0%259C%25EB%258B%2588%25ED%258A%25B8%25EB%259F%25AD109.JPG?type=w800",
+      "description": "요즘 꼬치엔 돼지가 대세지!"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "truckId": 1,
+      "foodId": 0,
+      "count": 2,
+      "isReady": false
+    },
+    {
+      "truckId": 1,
+      "foodId": 2,
+      "count": 5,
+      "isReady": false,
+      "id": 2
+    },
+    {
+      "truckId": 1,
+      "foodId": 3,
+      "count": 3,
+      "isReady": false,
+      "id": 3
+    },
+    {
+      "truckId": 1,
+      "foodId": 2,
+      "count": 5,
+      "isReady": false,
+      "id": 4
+    },
+    {
+      "truckId": 1,
+      "foodId": 3,
+      "count": 3,
+      "isReady": false,
+      "id": 5
+    },
+    {
+      "truckId": 1,
+      "foodId": 2,
+      "count": 5,
+      "isReady": false,
+      "id": 6
+    },
+    {
+      "truckId": 1,
+      "foodId": 3,
+      "count": 3,
+      "isReady": false,
+      "id": 7
+    },
+    {
+      "truckId": 0,
+      "foodId": 0,
+      "count": 1,
+      "isReady": false,
+      "id": 8
+    }
+  ]
 }
