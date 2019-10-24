@@ -1,16 +1,16 @@
 <template>
   <ion-page>
     <ion-header class="header">
-      <ion-row class="icon"></ion-row>
+      
       <ion-toolbar color="warning" class="toolbar">
+        <ion-row class="icon"></ion-row>
         <ion-buttons slot="secondary" @click="go('/login')" class="button">         
-          <ion-icon slot="icon-only" name="person" style="font-size:40px; margin-top:6px; margin-left:6px"></ion-icon>
+          <ion-icon slot="icon-only" name="person" style="font-size:40px"></ion-icon>
         </ion-buttons>
         <ion-title></ion-title>
         <ion-buttons slot="primary" @click="showLoginPrompt" class="button">         
-          <ion-icon slot="icon-only" name="settings" style="font-size:40px; margin-top:6px; margin-right:6px"></ion-icon>
+          <ion-icon slot="icon-only" name="settings" style="font-size:40px"></ion-icon>
         </ion-buttons>
-        
       </ion-toolbar>
       <ion-searchbar class="searchBackground"  @search="searchLocation"></ion-searchbar>
     </ion-header>
@@ -255,7 +255,7 @@ export default {
     --background-activated: #f86f70;
     --ion-color-danger: #f86f70;
   }
-  .icon {position: absolute; z-index: 2; left:25%; width: 50%; height: 53%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
+  .icon {position: absolute; z-index: 2; top:0%; left:0%; width: 100%; height: 100%; background: url("../assets/foot_icon.png") no-repeat; background-size: contain; background-position: center}
   .toolbar {position: relative; z-index: 1;}
   .label * {display: inline-block;vertical-align: top; background:}
   .label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
